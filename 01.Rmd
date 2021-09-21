@@ -1,0 +1,30 @@
+# CHAPTER TITLE
+
+**Learning objectives:**
+
+- These are optional, but helpful
+
+## Slide 1 title
+
+Treat each section like a slide.
+
+## Slide 2 title
+
+- Bullets
+- Can
+- Be
+- Helpful
+
+## Meeting Videos
+
+### Cohort 1
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+<summary> Meeting chat log </summary>
+
+```
+ADD LOG HERE
+```
+</details>

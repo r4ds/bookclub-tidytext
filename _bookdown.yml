@@ -1,0 +1,8 @@
+book_filename: "bookclub-tidytext"
+repo: https://github.com/r4ds/bookclub-tidytext
+edit: "https://github.com/r4ds/bookclub-tidytext/edit/main/%s"
+output_dir: "_book"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
