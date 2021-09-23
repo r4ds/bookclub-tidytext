@@ -1,6 +1,6 @@
-# R4DS Introduction to Statistical Learning Using R Book Club
+# R4DS Text Mining with R Using R Book Club
 
-Welcome to the R4DS Introduction to Statistical Learning Using R Book Club!
+Welcome to the Text Mining with R!
 
 We are working together to read [_Text Mining with R_](https://www.tidytextmining.com/) by Julia Silge and David Robinson (O'reilly Media, Inc, copyright 2017, 9781491981658).
 Join the #book_club-islr channel on the [R4DS Slack](https://r4ds.io/join) to participate.
