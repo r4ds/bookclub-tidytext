@@ -1,9 +1,9 @@
-# R4DS Text Mining with R Using R Book Club
+# R4DS Text Mining with R Book Club
 
-Welcome to the Text Mining with R!
+Welcome to the R4DS Text Mining with R Book Club!
 
 We are working together to read [_Text Mining with R_](https://www.tidytextmining.com/) by Julia Silge and David Robinson (O'reilly Media, Inc, copyright 2017, 9781491981658).
-Join the #book_club-islr channel on the [R4DS Slack](https://r4ds.io/join) to participate.
+Join the #book_club-tidytext channel on the [R4DS Slack](https://r4ds.io/join) to participate.
 As we read, we are producing [notes about the book](https://r4ds.github.io/bookclub-tidytext/).
 
 ## Meeting Schedule
@@ -33,4 +33,4 @@ To present, follow these instructions:
 9. Push your changes to your branch.
 10. Open a Pull Request (PR) to let us know that your slides are ready.
 
-When your PR is checked into the main branch, the bookdown site will rebuild, adding your slides to [this site](https://r4ds.github.io/bookclub-islr/).
+When your PR is checked into the main branch, the bookdown site will rebuild, adding your slides to [this site](https://r4ds.github.io/bookclub-tidytext/).
