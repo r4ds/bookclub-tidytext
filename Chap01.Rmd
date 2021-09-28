@@ -1,0 +1,210 @@
+# CHAPTER 1. The Tidy Text Format
+
+**tidy data (Wickham 2014) is: **
+
+- Each variable is a column. 
+- Each observation is a row. 
+- Each type of observational unit is a table.
+
+In the text analysis, the tide text format is a table that contains one token per row. 
+
+**One token: a meaniingful unit of text (e.g., words, n-gram, sentence, or paragraph)**
+
+**tidytext package:** keep text data in a tidy format (i.e., Using the `tidyverse` package for tidy data processing). 
+
+**Other R packages for text-mining or text analysis:** `tm`, `quanteda`, `sentiment`, `text2vec`, etc.
+
+Check out the [ CRAN Task View: Natural Language Processing ](https://r4ds.io/tidytext) for R packages of text analysis.
+
+## Contrasting Tidy Text with Other Data Structures
+
+- **String:** character vectors (i.e., each letter, words, etc.)
+- **Corpus:** raw strings annotated with additional metadata and details (i.e, a bag of words)
+- **Document-term matrix:** a sparse matrix describing a collection of documents with one row for each document and one column for each term (`tf-idf` in Chapter 3).  
+
+## The unnest_tokens Function 
+
+```{r 01-unnest_tokens, eval=TRUE}
+text <- c("Because I could not stop for Death -",
+          "He kindly stopped for me -", 
+          "The Carriage held but just Ourselves -",
+          "and Immotality")
+text
+
+```
+
+We need to put this into a data frame to convert it into a tidy text dataset. 
+
+```{r 01-convert_dataframe, eval=TRUE}
+library(tidyverse)
+text_df <- tibble(line=1:4, text=text)
+text_df
+
+```
+
+Now, we can extract tokens (i.e., words in this example) from the data frame by using the `unnest_tokens` function.
+
+```{r 01-tokens, eval=TRUE}
+library(tidytext)
+text_df %>% 
+  unnest_tokens(word, text)
+```
+
+**unnest_tokens() function**
+- Other columns, such as the line number each word came from are retained. 
+- Punctuation has been stripped. 
+- By default, `unnest_tokens()` converts the tokens to lowercase, which makes them easier to compare or combine with other datasets (to_lower=FALSE to turn off this option)
+
+## Example 1: Tidying the works of Jane Austen
+
+**Loading the texts and converting it into a tibble data format:**
+
+```{r 01-example1, eval=TRUE}
+library(janeaustenr)
+library(dplyr)
+library(stringr)
+
+original_books <- austen_books() %>%
+  group_by(book) %>%
+  mutate(linenumber = row_number(),
+         chapter = cumsum(str_detect(text, 
+                                     regex("^chapter [\\divxlc]",
+                                           ignore_case = TRUE)))) %>%
+  ungroup()
+
+original_books
+```
+
+**Restructuring the one-token-per-row tidytext data format:**
+
+```{r 01-example1_unnest_token, eval=TRUE}
+library(tidytext)
+tidy_books <- original_books %>%
+  unnest_tokens(word, text)
+
+tidy_books
+```
+
+**Removing the stopwords:**
+Often in text analysis, we will want to remove stop words; stop words are words that are not useful for an analysis, typically extremely common words such as “the”, “of”, “to”, and so forth in English. We can remove stop words (kept in the tidytext dataset stop_words) with an `anti_join()`.
+
+```{r 01-example1_stopwords, eval=TRUE}
+data(stop_words)
+
+tidy_books <- tidy_books %>%
+  anti_join(stop_words)
+```
+
+We can use them all together, as we have here, or `filter()` to only use one set of stop words if that is more appropriate for a certain analysis.
+
+**Using the `dplyr::count()` to summarize the word frequency results as a tidy data table:**
+
+```{r 01-example1_countwords, eval=TRUE}
+tidy_books %>%
+  count(word, sort = TRUE) 
+```
+
+**Visualizing the word frequency results as a plot:**
+```{r 01-example1_ggplot, eval=TRUE}
+library(ggplot2)
+
+tidy_books %>%
+  count(word, sort = TRUE) %>%
+  filter(n > 600) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(n, word)) +
+  geom_col() +
+  labs(y = NULL)
+```
+
+## Example 2: The `gutenbergr` package
+
+Check out the [ Problem with use of gutenberg_download function ](https://github.com/ropensci/gutenbergr/issues/8)
+
+```{r 01-example2_tidytexts, eval=TRUE}
+library(gutenbergr)
+
+hgwells <- gutenberg_download(c(35, 36, 5230, 159), mirror = "http://mirrors.xmission.com/gutenberg/")
+tidy_hgwells <- hgwells %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words)
+tidy_hgwells %>%
+  count(word, sort = TRUE)
+```
+
+```{r 01-example2_tidytexts2, eval=TRUE}
+bronte <- gutenberg_download(c(1260, 768, 969, 9182, 767), mirror = "http://mirrors.xmission.com/gutenberg/")
+tidy_bronte <- bronte %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words)
+tidy_bronte %>%
+  count(word, sort = TRUE)
+```
+
+**Now, calcuating the words frequencies for the three works**
+```{r 01-example2_wf, eval=TRUE}
+library(tidyr)
+
+frequency <- bind_rows(mutate(tidy_bronte, author = "Brontë Sisters"),
+                       mutate(tidy_hgwells, author = "H.G. Wells"), 
+                       mutate(tidy_books, author = "Jane Austen")) %>% 
+  mutate(word = str_extract(word, "[a-z']+")) %>%
+  count(author, word) %>%
+  group_by(author) %>%
+  mutate(proportion = n / sum(n)) %>% 
+  dplyr::select(-n) %>% 
+  pivot_wider(names_from = author, values_from = proportion) %>%
+  pivot_longer(`Brontë Sisters`:`H.G. Wells`,
+               names_to = "author", values_to = "proportion")
+
+frequency
+```
+
+**Creating a plot**
+```{r 01-example2_plot, eval=TRUE}
+library(scales)
+
+# expect a warning about rows with missing values being removed
+ggplot(frequency, aes(x = proportion, y = `Jane Austen`, 
+                      color = abs(`Jane Austen` - proportion))) +
+  geom_abline(color = "gray40", lty = 2) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.3, height = 0.3) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  scale_color_gradient(limits = c(0, 0.001), 
+                       low = "darkslategray4", high = "gray75") +
+  facet_wrap(~author, ncol = 2) +
+  theme(legend.position="none") +
+  labs(y = "Jane Austen", x = NULL)
+
+```
+
+Let’s quantify how similar and different these sets of word frequencies are using a correlation test. How correlated are the word frequencies between Austen and the Brontë sisters, and between Austen and Wells?
+
+```{r 01-example2_cortest, eval=TRUE}
+cor.test(data = frequency[frequency$author == "Brontë Sisters",],
+         ~ proportion + `Jane Austen`)
+
+cor.test(data = frequency[frequency$author == "H.G. Wells",], 
+         ~ proportion + `Jane Austen`)
+```
+
+## A flowchart of a typical text analysis using tidy data priciples.
+```{r 01-fig, echo=FALSE}
+knitr::include_graphics("https://www.tidytextmining.com/images/tmwr_0101.png")
+```
+
+## Meeting Videos
+
+### Cohort 1
+
+`r knitr::include_url("https://www.youtube.com/embed/URL")`
+
+<details>
+<summary> Meeting chat log </summary>
+
+```
+ADD LOG HERE
+```
+</details>
