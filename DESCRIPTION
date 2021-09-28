@@ -16,5 +16,5 @@ Imports:
     tidytext,
     rmarkdown,
     tidyverse,
-    gutenburgr,
+    gutenbergr,
     janeaustenr
