@@ -122,7 +122,7 @@ tidy_books %>%
 Check out the [ Problem with use of gutenberg_download function ](https://github.com/ropensci/gutenbergr/issues/8)
 
 ```{r 01-example2_tidytexts, eval=TRUE}
-library(gutenbergr)
+usethis::use_package("gutenbergr")
 
 hgwells <- gutenberg_download(c(35, 36, 5230, 159), mirror = "http://mirrors.xmission.com/gutenberg/")
 tidy_hgwells <- hgwells %>%
