@@ -13,6 +13,8 @@ If you would like to present, please add your name next to a chapter using the [
 *Cohort 1: (started 2021-09-22) - Wednesdays, 4:00pm EST/EDT*
 
 - 2021-09-22: Introduction - Shamsuddeen
+- 2021-09-30: Chapter 1: The tidy text format - Kim
+- 2021-10-13: Chapter 3: Relationships between words: n-grams and correlations - Pavitra
 
 <hr>
 
