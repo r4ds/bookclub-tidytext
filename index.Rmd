@@ -13,6 +13,8 @@ description: "This is the product of the R4DS Online Learning Community's Text M
 
 # Welcome {-}
 
+Welcome to the bookclub! 
+
 This is a companion for the book [_Text Mining with R_](https://www.tidytextmining.com/) by Julia Silge and David Robinson (O'reilly Media, Inc, copyright 2017, 9781491981658).
 This companion is available at [r4ds.io/tidytext](https://r4ds.io/tidytext).
 
@@ -25,7 +27,7 @@ This companion follows the [R4DS Online Learning Community Code of Conduct](http
 - Each week, a volunteer will present a chapter from the book (or part of a chapter).
   - **This is the best way to learn the material.**
 - Presentations will usually consist of a review of the material, a discussion, and/or a demonstration of the principles presented in that chapter.
-- More information about how to present is available in the [github repo](https://github.com/r4ds/bookclub-islr).
+- More information about how to present is available in the [github repo](https://github.com/r4ds/bookclub-tidytext).
 - Presentations will be recorded, and will be available on the [R4DS Online Learning Community YouTube Channel](https://r4ds.io/youtube).
 
 ## Pace {-}
