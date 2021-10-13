@@ -15,4 +15,6 @@ Imports:
     bookdown,
     tidytext,
     rmarkdown,
-    tidyverse
+    tidyverse,
+    gutenbergr,
+    janeaustenr
