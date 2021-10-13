@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.4 Example 2: The gutenbergr package | Text Mining with R Book Club</title>
+  <meta name="description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.4 Example 2: The gutenbergr package | Text Mining with R Book Club" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
+  <meta name="github-repo" content="r4ds/bookclub-tidytext" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.4 Example 2: The gutenbergr package | Text Mining with R Book Club" />
+  
+  <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
+  
+
+<meta name="author" content="The R4DS Online Learning Community" />
+
+
+<meta name="date" content="2021-10-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="example-1-tidying-the-works-of-jane-austen.html"/>
+<link rel="next" href="a-flowchart-of-a-typical-text-analysis-using-tidy-data-priciples..html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Text Mining with R Book Club</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
+<li class="chapter" data-level="" data-path="book-club-meetings.html"><a href="book-club-meetings.html"><i class="fa fa-check"></i>Book club meetings</a></li>
+<li class="chapter" data-level="" data-path="pace.html"><a href="pace.html"><i class="fa fa-check"></i>Pace</a></li>
+<li class="chapter" data-level="" data-path="book-chapters.html"><a href="book-chapters.html"><i class="fa fa-check"></i>Book Chapters</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="chapter-1.-the-tidy-text-format.html"><a href="chapter-1.-the-tidy-text-format.html"><i class="fa fa-check"></i><b>1</b> CHAPTER 1. The Tidy Text Format</a><ul>
+<li class="chapter" data-level="1.1" data-path="contrasting-tidy-text-with-other-data-structures.html"><a href="contrasting-tidy-text-with-other-data-structures.html"><i class="fa fa-check"></i><b>1.1</b> Contrasting Tidy Text with Other Data Structures</a></li>
+<li class="chapter" data-level="1.2" data-path="the-unnest_tokens-function.html"><a href="the-unnest_tokens-function.html"><i class="fa fa-check"></i><b>1.2</b> The unnest_tokens Function</a></li>
+<li class="chapter" data-level="1.3" data-path="example-1-tidying-the-works-of-jane-austen.html"><a href="example-1-tidying-the-works-of-jane-austen.html"><i class="fa fa-check"></i><b>1.3</b> Example 1: Tidying the works of Jane Austen</a></li>
+<li class="chapter" data-level="1.4" data-path="example-2-the-gutenbergr-package.html"><a href="example-2-the-gutenbergr-package.html"><i class="fa fa-check"></i><b>1.4</b> Example 2: The <code>gutenbergr</code> package</a></li>
+<li class="chapter" data-level="1.5" data-path="a-flowchart-of-a-typical-text-analysis-using-tidy-data-priciples..html"><a href="a-flowchart-of-a-typical-text-analysis-using-tidy-data-priciples..html"><i class="fa fa-check"></i><b>1.5</b> A flowchart of a typical text analysis using tidy data priciples.</a></li>
+<li class="chapter" data-level="1.6" data-path="meeting-videos.html"><a href="meeting-videos.html"><i class="fa fa-check"></i><b>1.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-1"><i class="fa fa-check"></i><b>1.6.1</b> Cohort 1</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Text Mining with R Book Club</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="example-2-the-gutenbergr-package" class="section level2">
+<h2><span class="header-section-number">1.4</span> Example 2: The <code>gutenbergr</code> package</h2>
+<p>Check out the <a href="https://github.com/ropensci/gutenbergr/issues/8">Problem with use of gutenberg_download function</a></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="example-2-the-gutenbergr-package.html#cb20-1"></a><span class="kw">library</span>(<span class="st">&quot;gutenbergr&quot;</span>)</span>
+<span id="cb20-2"><a href="example-2-the-gutenbergr-package.html#cb20-2"></a></span>
+<span id="cb20-3"><a href="example-2-the-gutenbergr-package.html#cb20-3"></a>hgwells &lt;-<span class="st"> </span><span class="kw">gutenberg_download</span>(<span class="kw">c</span>(<span class="dv">35</span>, <span class="dv">36</span>, <span class="dv">5230</span>, <span class="dv">159</span>), <span class="dt">mirror =</span> <span class="st">&quot;http://mirrors.xmission.com/gutenberg/&quot;</span>)</span>
+<span id="cb20-4"><a href="example-2-the-gutenbergr-package.html#cb20-4"></a>tidy_hgwells &lt;-<span class="st"> </span>hgwells <span class="op">%&gt;%</span></span>
+<span id="cb20-5"><a href="example-2-the-gutenbergr-package.html#cb20-5"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(word, text) <span class="op">%&gt;%</span></span>
+<span id="cb20-6"><a href="example-2-the-gutenbergr-package.html#cb20-6"></a><span class="st">  </span><span class="kw">anti_join</span>(stop_words)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;word&quot;</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="example-2-the-gutenbergr-package.html#cb22-1"></a>tidy_hgwells <span class="op">%&gt;%</span></span>
+<span id="cb22-2"><a href="example-2-the-gutenbergr-package.html#cb22-2"></a><span class="st">  </span><span class="kw">count</span>(word, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 11,830 × 2
+##    word       n
+##    &lt;chr&gt;  &lt;int&gt;
+##  1 time     461
+##  2 people   302
+##  3 door     260
+##  4 heard    249
+##  5 black    232
+##  6 stood    229
+##  7 white    224
+##  8 hand     218
+##  9 kemp     213
+## 10 eyes     210
+## # … with 11,820 more rows</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="example-2-the-gutenbergr-package.html#cb24-1"></a>bronte &lt;-<span class="st"> </span><span class="kw">gutenberg_download</span>(<span class="kw">c</span>(<span class="dv">1260</span>, <span class="dv">768</span>, <span class="dv">969</span>, <span class="dv">9182</span>, <span class="dv">767</span>), <span class="dt">mirror =</span> <span class="st">&quot;http://mirrors.xmission.com/gutenberg/&quot;</span>)</span>
+<span id="cb24-2"><a href="example-2-the-gutenbergr-package.html#cb24-2"></a>tidy_bronte &lt;-<span class="st"> </span>bronte <span class="op">%&gt;%</span></span>
+<span id="cb24-3"><a href="example-2-the-gutenbergr-package.html#cb24-3"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(word, text) <span class="op">%&gt;%</span></span>
+<span id="cb24-4"><a href="example-2-the-gutenbergr-package.html#cb24-4"></a><span class="st">  </span><span class="kw">anti_join</span>(stop_words)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;word&quot;</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="example-2-the-gutenbergr-package.html#cb26-1"></a>tidy_bronte <span class="op">%&gt;%</span></span>
+<span id="cb26-2"><a href="example-2-the-gutenbergr-package.html#cb26-2"></a><span class="st">  </span><span class="kw">count</span>(word, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 23,303 × 2
+##    word       n
+##    &lt;chr&gt;  &lt;int&gt;
+##  1 time    1064
+##  2 miss     854
+##  3 day      826
+##  4 hand     767
+##  5 eyes     713
+##  6 don’t    666
+##  7 night    648
+##  8 heart    638
+##  9 looked   601
+## 10 door     591
+## # … with 23,293 more rows</code></pre>
+<p><strong>Now, calcuating the words frequencies for the three works</strong></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="example-2-the-gutenbergr-package.html#cb28-1"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb28-2"><a href="example-2-the-gutenbergr-package.html#cb28-2"></a></span>
+<span id="cb28-3"><a href="example-2-the-gutenbergr-package.html#cb28-3"></a>frequency &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(<span class="kw">mutate</span>(tidy_bronte, <span class="dt">author =</span> <span class="st">&quot;Brontë Sisters&quot;</span>),</span>
+<span id="cb28-4"><a href="example-2-the-gutenbergr-package.html#cb28-4"></a>                       <span class="kw">mutate</span>(tidy_hgwells, <span class="dt">author =</span> <span class="st">&quot;H.G. Wells&quot;</span>), </span>
+<span id="cb28-5"><a href="example-2-the-gutenbergr-package.html#cb28-5"></a>                       <span class="kw">mutate</span>(tidy_books, <span class="dt">author =</span> <span class="st">&quot;Jane Austen&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-6"><a href="example-2-the-gutenbergr-package.html#cb28-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">word =</span> <span class="kw">str_extract</span>(word, <span class="st">&quot;[a-z&#39;]+&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb28-7"><a href="example-2-the-gutenbergr-package.html#cb28-7"></a><span class="st">  </span><span class="kw">count</span>(author, word) <span class="op">%&gt;%</span></span>
+<span id="cb28-8"><a href="example-2-the-gutenbergr-package.html#cb28-8"></a><span class="st">  </span><span class="kw">group_by</span>(author) <span class="op">%&gt;%</span></span>
+<span id="cb28-9"><a href="example-2-the-gutenbergr-package.html#cb28-9"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">proportion =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-10"><a href="example-2-the-gutenbergr-package.html#cb28-10"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>n) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-11"><a href="example-2-the-gutenbergr-package.html#cb28-11"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> author, <span class="dt">values_from =</span> proportion) <span class="op">%&gt;%</span></span>
+<span id="cb28-12"><a href="example-2-the-gutenbergr-package.html#cb28-12"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="st">`</span><span class="dt">Brontë Sisters</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">H.G. Wells</span><span class="st">`</span>,</span>
+<span id="cb28-13"><a href="example-2-the-gutenbergr-package.html#cb28-13"></a>               <span class="dt">names_to =</span> <span class="st">&quot;author&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;proportion&quot;</span>)</span>
+<span id="cb28-14"><a href="example-2-the-gutenbergr-package.html#cb28-14"></a></span>
+<span id="cb28-15"><a href="example-2-the-gutenbergr-package.html#cb28-15"></a>frequency</span></code></pre></div>
+<pre><code>## # A tibble: 57,252 × 4
+##    word      `Jane Austen` author          proportion
+##    &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;
+##  1 a            0.00000919 Brontë Sisters  0.0000587 
+##  2 a            0.00000919 H.G. Wells      0.0000148 
+##  3 aback       NA          Brontë Sisters  0.00000391
+##  4 aback       NA          H.G. Wells      0.0000148 
+##  5 abaht       NA          Brontë Sisters  0.00000391
+##  6 abaht       NA          H.G. Wells     NA         
+##  7 abandon     NA          Brontë Sisters  0.0000313 
+##  8 abandon     NA          H.G. Wells      0.0000148 
+##  9 abandoned    0.00000460 Brontë Sisters  0.0000900 
+## 10 abandoned    0.00000460 H.G. Wells      0.000178  
+## # … with 57,242 more rows</code></pre>
+<p><strong>Creating a plot</strong></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="example-2-the-gutenbergr-package.html#cb30-1"></a><span class="kw">library</span>(scales)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;scales&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="example-2-the-gutenbergr-package.html#cb34-1"></a><span class="co"># expect a warning about rows with missing values being removed</span></span>
+<span id="cb34-2"><a href="example-2-the-gutenbergr-package.html#cb34-2"></a><span class="kw">ggplot</span>(frequency, <span class="kw">aes</span>(<span class="dt">x =</span> proportion, <span class="dt">y =</span> <span class="st">`</span><span class="dt">Jane Austen</span><span class="st">`</span>, </span>
+<span id="cb34-3"><a href="example-2-the-gutenbergr-package.html#cb34-3"></a>                      <span class="dt">color =</span> <span class="kw">abs</span>(<span class="st">`</span><span class="dt">Jane Austen</span><span class="st">`</span> <span class="op">-</span><span class="st"> </span>proportion))) <span class="op">+</span></span>
+<span id="cb34-4"><a href="example-2-the-gutenbergr-package.html#cb34-4"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">color =</span> <span class="st">&quot;gray40&quot;</span>, <span class="dt">lty =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb34-5"><a href="example-2-the-gutenbergr-package.html#cb34-5"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>, <span class="dt">size =</span> <span class="fl">2.5</span>, <span class="dt">width =</span> <span class="fl">0.3</span>, <span class="dt">height =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb34-6"><a href="example-2-the-gutenbergr-package.html#cb34-6"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> word), <span class="dt">check_overlap =</span> <span class="ot">TRUE</span>, <span class="dt">vjust =</span> <span class="fl">1.5</span>) <span class="op">+</span></span>
+<span id="cb34-7"><a href="example-2-the-gutenbergr-package.html#cb34-7"></a><span class="st">  </span><span class="kw">scale_x_log10</span>(<span class="dt">labels =</span> <span class="kw">percent_format</span>()) <span class="op">+</span></span>
+<span id="cb34-8"><a href="example-2-the-gutenbergr-package.html#cb34-8"></a><span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="dt">labels =</span> <span class="kw">percent_format</span>()) <span class="op">+</span></span>
+<span id="cb34-9"><a href="example-2-the-gutenbergr-package.html#cb34-9"></a><span class="st">  </span><span class="kw">scale_color_gradient</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.001</span>), </span>
+<span id="cb34-10"><a href="example-2-the-gutenbergr-package.html#cb34-10"></a>                       <span class="dt">low =</span> <span class="st">&quot;darkslategray4&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;gray75&quot;</span>) <span class="op">+</span></span>
+<span id="cb34-11"><a href="example-2-the-gutenbergr-package.html#cb34-11"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>author, <span class="dt">ncol =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb34-12"><a href="example-2-the-gutenbergr-package.html#cb34-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
+<span id="cb34-13"><a href="example-2-the-gutenbergr-package.html#cb34-13"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Jane Austen&quot;</span>, <span class="dt">x =</span> <span class="ot">NULL</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 40857 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 40859 rows containing missing values (geom_text).</code></pre>
+<p><img src="bookclub-tidytext_files/figure-html/01-example2_plot-1.png" width="672" /></p>
+<p>Let’s quantify how similar and different these sets of word frequencies are using a correlation test. How correlated are the word frequencies between Austen and the Brontë sisters, and between Austen and Wells?</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="example-2-the-gutenbergr-package.html#cb37-1"></a><span class="kw">cor.test</span>(<span class="dt">data =</span> frequency[frequency<span class="op">$</span>author <span class="op">==</span><span class="st"> &quot;Brontë Sisters&quot;</span>,],</span>
+<span id="cb37-2"><a href="example-2-the-gutenbergr-package.html#cb37-2"></a>         <span class="op">~</span><span class="st"> </span>proportion <span class="op">+</span><span class="st"> `</span><span class="dt">Jane Austen</span><span class="st">`</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  proportion and Jane Austen
+## t = 111.09, df = 10345, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.7286568 0.7462330
+## sample estimates:
+##       cor 
+## 0.7375698</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="example-2-the-gutenbergr-package.html#cb39-1"></a><span class="kw">cor.test</span>(<span class="dt">data =</span> frequency[frequency<span class="op">$</span>author <span class="op">==</span><span class="st"> &quot;H.G. Wells&quot;</span>,], </span>
+<span id="cb39-2"><a href="example-2-the-gutenbergr-package.html#cb39-2"></a>         <span class="op">~</span><span class="st"> </span>proportion <span class="op">+</span><span class="st"> `</span><span class="dt">Jane Austen</span><span class="st">`</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  proportion and Jane Austen
+## t = 36.083, df = 6046, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.3999815 0.4414612
+## sample estimates:
+##       cor 
+## 0.4209414</code></pre>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="example-1-tidying-the-works-of-jane-austen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a-flowchart-of-a-typical-text-analysis-using-tidy-data-priciples..html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/r4ds/bookclub-tidytext/edit/main/01.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

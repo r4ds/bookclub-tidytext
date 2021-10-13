@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Pace | Text Mining with R Book Club</title>
+  <title>1.1 Contrasting Tidy Text with Other Data Structures | Text Mining with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Pace | Text Mining with R Book Club" />
+  <meta property="og:title" content="1.1 Contrasting Tidy Text with Other Data Structures | Text Mining with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tidytext" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Pace | Text Mining with R Book Club" />
+  <meta name="twitter:title" content="1.1 Contrasting Tidy Text with Other Data Structures | Text Mining with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="book-club-meetings.html"/>
-<link rel="next" href="book-chapters.html"/>
+<link rel="prev" href="chapter-1.-the-tidy-text-format.html"/>
+<link rel="next" href="the-unnest_tokens-function.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -172,12 +172,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pace" class="section level2 unnumbered">
-<h2>Pace</h2>
+<div id="contrasting-tidy-text-with-other-data-structures" class="section level2">
+<h2><span class="header-section-number">1.1</span> Contrasting Tidy Text with Other Data Structures</h2>
 <ul>
-<li>We’ll <em>try</em> to cover 1 chapter/week, but…</li>
-<li>…It’s ok to split chapters when they feel like too much.</li>
-<li>We will try to meet every week, but will likely take some breaks for holidays, etc.</li>
+<li><strong>String:</strong> character vectors (i.e., each letter, words, etc.)</li>
+<li><strong>Corpus:</strong> raw strings annotated with additional metadata and details (i.e, a bag of words)</li>
+<li><strong>Document-term matrix:</strong> a sparse matrix describing a collection of documents with one row for each document and one column for each term (<code>tf-idf</code> in Chapter 3).</li>
 </ul>
 </div>
             </section>
@@ -185,8 +185,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="book-club-meetings.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="book-chapters.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter-1.-the-tidy-text-format.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-unnest_tokens-function.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -217,7 +217,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tidytext/edit/main/index.Rmd",
+"link": "https://github.com/r4ds/bookclub-tidytext/edit/main/01.Rmd",
 "text": "Edit"
 },
 "history": {

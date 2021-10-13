@@ -1,5 +1,8 @@
-chapter-title
-slide-1-title
-slide-2-title
+chapter-1.-the-tidy-text-format
+contrasting-tidy-text-with-other-data-structures
+the-unnest_tokens-function
+example-1-tidying-the-works-of-jane-austen
+example-2-the-gutenbergr-package
+a-flowchart-of-a-typical-text-analysis-using-tidy-data-priciples.
 meeting-videos
 cohort-1
