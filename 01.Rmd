@@ -1,4 +1,4 @@
-# CHAPTER 1. The Tidy Text Format
+# The Tidy Text Format
 
 **tidy data (Wickham 2014) is: **
 
