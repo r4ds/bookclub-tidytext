@@ -1,3 +1,43 @@
+--- 
+title: "Text Mining with R Book Club"
+author: "The R4DS Online Learning Community"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: book.bib
+biblio-style: apalike
+link-citations: yes
+github-repo: r4ds/bookclub-tidytext
+description: "This is the product of the R4DS Online Learning Community's Text Mining with R Book Club."
+---
+
+# Welcome {-}
+
+Placeholder
+
+
+## Book club meetings {-}
+## Pace {-}
+## Book Chapters {-}
+
+<!--chapter:end:index.Rmd-->
+
+
+# The Tidy Text Format
+
+Placeholder
+
+
+## Contrasting Tidy Text with Other Data Structures
+## The unnest_tokens Function 
+## Example 1: Tidying the works of Jane Austen
+## Example 2: The `gutenbergr` package
+## A flowchart of a typical text analysis using tidy data priciples.
+## Meeting Videos
+### Cohort 1
+
+<!--chapter:end:01.Rmd-->
+
 # Relationships between words: n-grams & correlations
 
 ## Objectives: 
@@ -334,4 +374,7 @@ word_cors %>%
   facet_wrap(~ item1, scales = "free") +
   coord_flip()
 ```
+
+
+<!--chapter:end:04-relationships.Rmd-->
 
