@@ -1,3 +1,4 @@
+fig:tidyflow-ch2
 the-tidy-text-format
 contrasting-tidy-text-with-other-data-structures
 the-unnest_tokens-function
@@ -7,6 +8,14 @@ a-flowchart-of-a-typical-text-analysis-using-tidy-data-priciples.
 meeting-videos
 cohort-1
 sentiment-analysis-with-tidy-data
+sentiment-analysis-with-tidy-data-1
+sentimentemotion-lexicons
+sentiment-analysis-with-inner-join
+examining-how-sentiment-changes-in-each-novel
+comparing-the-three-sentiment-dictionaries
+most-common-positive-and-negative-words
+wordclouds
+looking-at-units-beyond-just-words
 meeting-videos-1
 cohort-1-1
 analyzing-word-and-document-frequency-tf-idf

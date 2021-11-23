@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Sentiment analysis with tidy data | Text Mining with R Book Club</title>
+  <title>2.5 Comparing the three sentiment dictionaries | Text Mining with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Sentiment analysis with tidy data | Text Mining with R Book Club" />
+  <meta property="og:title" content="2.5 Comparing the three sentiment dictionaries | Text Mining with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tidytext" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Sentiment analysis with tidy data | Text Mining with R Book Club" />
+  <meta name="twitter:title" content="2.5 Comparing the three sentiment dictionaries | Text Mining with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="meeting-videos.html"/>
-<link rel="next" href="sentiment-analysis-with-tidy-data-1.html"/>
+<link rel="prev" href="examining-how-sentiment-changes-in-each-novel.html"/>
+<link rel="next" href="most-common-positive-and-negative-words.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -201,13 +201,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sentiment-analysis-with-tidy-data" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Sentiment analysis with tidy data</h1>
-<p><strong>Learning objectives:</strong></p>
+<div id="comparing-the-three-sentiment-dictionaries" class="section level2">
+<h2><span class="header-section-number">2.5</span> Comparing the three sentiment dictionaries</h2>
 <ul>
-<li><p>Learn how to use tidytext approach to find sentiment of a text</p></li>
-<li><p>Learn about diff sentiment lexicon</p></li>
-<li><p>Learn how to use Wordcloud</p></li>
+<li><p>Lexicons have diff quality</p></li>
+<li><p>Use three sentiment lexicons and examine how the sentiment changes across the narrative arc of Pride and Prejudice.</p></li>
+</ul>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="comparing-the-three-sentiment-dictionaries.html#cb68-1"></a>pride_prejudice &lt;-<span class="st"> </span>tidy_books <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb68-2"><a href="comparing-the-three-sentiment-dictionaries.html#cb68-2"></a><span class="st">  </span><span class="kw">filter</span>(book <span class="op">==</span><span class="st"> &quot;Pride &amp; Prejudice&quot;</span>)</span>
+<span id="cb68-3"><a href="comparing-the-three-sentiment-dictionaries.html#cb68-3"></a>pride_prejudice</span></code></pre></div>
+<pre><code>## # A tibble: 122,204 × 4
+##    book              linenumber chapter word     
+##    &lt;fct&gt;                  &lt;int&gt;   &lt;int&gt; &lt;chr&gt;    
+##  1 Pride &amp; Prejudice          1       0 pride    
+##  2 Pride &amp; Prejudice          1       0 and      
+##  3 Pride &amp; Prejudice          1       0 prejudice
+##  4 Pride &amp; Prejudice          3       0 by       
+##  5 Pride &amp; Prejudice          3       0 jane     
+##  6 Pride &amp; Prejudice          3       0 austen   
+##  7 Pride &amp; Prejudice          7       1 chapter  
+##  8 Pride &amp; Prejudice          7       1 1        
+##  9 Pride &amp; Prejudice         10       1 it       
+## 10 Pride &amp; Prejudice         10       1 is       
+## # … with 122,194 more rows</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="comparing-the-three-sentiment-dictionaries.html#cb70-1"></a>afinn &lt;-<span class="st"> </span>pride_prejudice <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb70-2"><a href="comparing-the-three-sentiment-dictionaries.html#cb70-2"></a><span class="st">  </span><span class="kw">inner_join</span>(<span class="kw">get_sentiments</span>(<span class="st">&quot;afinn&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb70-3"><a href="comparing-the-three-sentiment-dictionaries.html#cb70-3"></a><span class="st">  </span><span class="kw">group_by</span>(<span class="dt">index =</span> linenumber <span class="op">%/%</span><span class="st"> </span><span class="dv">80</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb70-4"><a href="comparing-the-three-sentiment-dictionaries.html#cb70-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sentiment =</span> <span class="kw">sum</span>(value)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb70-5"><a href="comparing-the-three-sentiment-dictionaries.html#cb70-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">method =</span> <span class="st">&quot;AFINN&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="comparing-the-three-sentiment-dictionaries.html#cb71-1"></a>bin_pride_prejudice &lt;-<span class="st">  </span>pride_prejudice <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb71-2"><a href="comparing-the-three-sentiment-dictionaries.html#cb71-2"></a><span class="st">    </span><span class="kw">inner_join</span>(<span class="kw">get_sentiments</span>(<span class="st">&quot;bing&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb71-3"><a href="comparing-the-three-sentiment-dictionaries.html#cb71-3"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">method =</span> <span class="st">&quot;Bing et al.&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb71-4"><a href="comparing-the-three-sentiment-dictionaries.html#cb71-4"></a><span class="st"> </span><span class="kw">count</span>(method, <span class="dt">index =</span> linenumber <span class="op">%/%</span><span class="st"> </span><span class="dv">80</span>, sentiment) <span class="op">%&gt;%</span></span>
+<span id="cb71-5"><a href="comparing-the-three-sentiment-dictionaries.html#cb71-5"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> sentiment,</span>
+<span id="cb71-6"><a href="comparing-the-three-sentiment-dictionaries.html#cb71-6"></a>              <span class="dt">values_from =</span> n,</span>
+<span id="cb71-7"><a href="comparing-the-three-sentiment-dictionaries.html#cb71-7"></a>              <span class="dt">values_fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb71-8"><a href="comparing-the-three-sentiment-dictionaries.html#cb71-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sentiment =</span> positive <span class="op">-</span><span class="st"> </span>negative)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;word&quot;</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="comparing-the-three-sentiment-dictionaries.html#cb73-1"></a><span class="kw">bind_rows</span>(afinn, </span>
+<span id="cb73-2"><a href="comparing-the-three-sentiment-dictionaries.html#cb73-2"></a>          bin_pride_prejudice) <span class="op">%&gt;%</span></span>
+<span id="cb73-3"><a href="comparing-the-three-sentiment-dictionaries.html#cb73-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(index, sentiment, <span class="dt">fill =</span> method)) <span class="op">+</span></span>
+<span id="cb73-4"><a href="comparing-the-three-sentiment-dictionaries.html#cb73-4"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb73-5"><a href="comparing-the-three-sentiment-dictionaries.html#cb73-5"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>method, <span class="dt">ncol =</span> <span class="dv">1</span>, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<ul>
+<li>The lexicons for calculating sentiment give results that are different in an absolute sense but have similar relative trajectories through the nove</li>
 </ul>
 </div>
             </section>
@@ -215,8 +252,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="meeting-videos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sentiment-analysis-with-tidy-data-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="examining-how-sentiment-changes-in-each-novel.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="most-common-positive-and-negative-words.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

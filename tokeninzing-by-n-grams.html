@@ -153,8 +153,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="sentiment-analysis-with-tidy-data.html"><a href="sentiment-analysis-with-tidy-data.html"><i class="fa fa-check"></i><b>2</b> Sentiment analysis with tidy data</a><ul>
-<li class="chapter" data-level="2.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.1</b> Meeting Videos</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-1-1"><i class="fa fa-check"></i><b>2.1.1</b> Cohort 1</a></li>
+<li class="chapter" data-level="2.1" data-path="sentiment-analysis-with-tidy-data-1.html"><a href="sentiment-analysis-with-tidy-data-1.html"><i class="fa fa-check"></i><b>2.1</b> Sentiment analysis with tidy data</a></li>
+<li class="chapter" data-level="2.2" data-path="sentimentemotion-lexicons.html"><a href="sentimentemotion-lexicons.html"><i class="fa fa-check"></i><b>2.2</b> Sentiment/emotion Lexicons</a></li>
+<li class="chapter" data-level="2.3" data-path="sentiment-analysis-with-inner-join.html"><a href="sentiment-analysis-with-inner-join.html"><i class="fa fa-check"></i><b>2.3</b> Sentiment analysis with inner join</a></li>
+<li class="chapter" data-level="2.4" data-path="examining-how-sentiment-changes-in-each-novel.html"><a href="examining-how-sentiment-changes-in-each-novel.html"><i class="fa fa-check"></i><b>2.4</b> Examining how sentiment changes in each novel</a></li>
+<li class="chapter" data-level="2.5" data-path="comparing-the-three-sentiment-dictionaries.html"><a href="comparing-the-three-sentiment-dictionaries.html"><i class="fa fa-check"></i><b>2.5</b> Comparing the three sentiment dictionaries</a></li>
+<li class="chapter" data-level="2.6" data-path="most-common-positive-and-negative-words.html"><a href="most-common-positive-and-negative-words.html"><i class="fa fa-check"></i><b>2.6</b> Most common positive and negative words</a></li>
+<li class="chapter" data-level="2.7" data-path="wordclouds.html"><a href="wordclouds.html"><i class="fa fa-check"></i><b>2.7</b> Wordclouds</a></li>
+<li class="chapter" data-level="2.8" data-path="looking-at-units-beyond-just-words.html"><a href="looking-at-units-beyond-just-words.html"><i class="fa fa-check"></i><b>2.8</b> Looking at units beyond just words</a></li>
+<li class="chapter" data-level="2.9" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.9</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="2.9.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-1-1"><i class="fa fa-check"></i><b>2.9.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="analyzing-word-and-document-frequency-tf-idf.html"><a href="analyzing-word-and-document-frequency-tf-idf.html"><i class="fa fa-check"></i><b>3</b> Analyzing word and document frequency: tf-idf</a><ul>
@@ -196,15 +204,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tokeninzing-by-n-grams" class="section level2">
 <h2><span class="header-section-number">4.2</span> Tokeninzing by n-grams</h2>
 <p><strong>n-gram: pair of adjacent words. Useful for identifying frequencies in which certain words appear together so that a model of their relationship can be built.</strong></p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="tokeninzing-by-n-grams.html#cb44-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb44-2"><a href="tokeninzing-by-n-grams.html#cb44-2"></a><span class="kw">library</span>(tidytext)</span>
-<span id="cb44-3"><a href="tokeninzing-by-n-grams.html#cb44-3"></a><span class="kw">library</span>(janeaustenr)</span>
-<span id="cb44-4"><a href="tokeninzing-by-n-grams.html#cb44-4"></a></span>
-<span id="cb44-5"><a href="tokeninzing-by-n-grams.html#cb44-5"></a><span class="co"># utilize unnest_tokens() however specify the token is &quot;ngram&quot; and n instead of by words</span></span>
-<span id="cb44-6"><a href="tokeninzing-by-n-grams.html#cb44-6"></a>austen_bigrams &lt;-<span class="st"> </span><span class="kw">austen_books</span>() <span class="op">%&gt;%</span></span>
-<span id="cb44-7"><a href="tokeninzing-by-n-grams.html#cb44-7"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(bigram, text, <span class="dt">token =</span> <span class="st">&quot;ngrams&quot;</span>, <span class="dt">n =</span> <span class="dv">2</span>)</span>
-<span id="cb44-8"><a href="tokeninzing-by-n-grams.html#cb44-8"></a></span>
-<span id="cb44-9"><a href="tokeninzing-by-n-grams.html#cb44-9"></a><span class="kw">head</span>(austen_bigrams)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="tokeninzing-by-n-grams.html#cb88-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb88-2"><a href="tokeninzing-by-n-grams.html#cb88-2"></a><span class="kw">library</span>(tidytext)</span>
+<span id="cb88-3"><a href="tokeninzing-by-n-grams.html#cb88-3"></a><span class="kw">library</span>(janeaustenr)</span>
+<span id="cb88-4"><a href="tokeninzing-by-n-grams.html#cb88-4"></a></span>
+<span id="cb88-5"><a href="tokeninzing-by-n-grams.html#cb88-5"></a><span class="co"># utilize unnest_tokens() however specify the token is &quot;ngram&quot; and n instead of by words</span></span>
+<span id="cb88-6"><a href="tokeninzing-by-n-grams.html#cb88-6"></a>austen_bigrams &lt;-<span class="st"> </span><span class="kw">austen_books</span>() <span class="op">%&gt;%</span></span>
+<span id="cb88-7"><a href="tokeninzing-by-n-grams.html#cb88-7"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(bigram, text, <span class="dt">token =</span> <span class="st">&quot;ngrams&quot;</span>, <span class="dt">n =</span> <span class="dv">2</span>)</span>
+<span id="cb88-8"><a href="tokeninzing-by-n-grams.html#cb88-8"></a></span>
+<span id="cb88-9"><a href="tokeninzing-by-n-grams.html#cb88-9"></a><span class="kw">head</span>(austen_bigrams)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##   book                bigram         
 ##   &lt;fct&gt;               &lt;chr&gt;          
@@ -215,8 +223,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 Sense &amp; Sensibility jane austen    
 ## 6 Sense &amp; Sensibility &lt;NA&gt;</code></pre>
 <p>OK, how about again with some real data:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="tokeninzing-by-n-grams.html#cb46-1"></a><span class="co"># from Kaggle: https://www.kaggle.com/datatattle/covid-19-nlp-text-classification?select=Corona_NLP_train.csv</span></span>
-<span id="cb46-2"><a href="tokeninzing-by-n-grams.html#cb46-2"></a>covid_tweets &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/Corona_NLP_train.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="tokeninzing-by-n-grams.html#cb90-1"></a><span class="co"># from Kaggle: https://www.kaggle.com/datatattle/covid-19-nlp-text-classification?select=Corona_NLP_train.csv</span></span>
+<span id="cb90-2"><a href="tokeninzing-by-n-grams.html#cb90-2"></a>covid_tweets &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/Corona_NLP_train.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 41157 Columns: 6</code></pre>
 <pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -225,11 +233,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="tokeninzing-by-n-grams.html#cb50-1"></a>covid_bigrams &lt;-<span class="st"> </span>covid_tweets <span class="op">%&gt;%</span></span>
-<span id="cb50-2"><a href="tokeninzing-by-n-grams.html#cb50-2"></a><span class="st">  </span><span class="kw">select</span>(OriginalTweet, Sentiment) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb50-3"><a href="tokeninzing-by-n-grams.html#cb50-3"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(bigram, OriginalTweet, <span class="dt">token =</span> <span class="st">&quot;ngrams&quot;</span>, <span class="dt">n =</span> <span class="dv">2</span>)</span>
-<span id="cb50-4"><a href="tokeninzing-by-n-grams.html#cb50-4"></a></span>
-<span id="cb50-5"><a href="tokeninzing-by-n-grams.html#cb50-5"></a><span class="kw">head</span>(covid_bigrams)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="tokeninzing-by-n-grams.html#cb94-1"></a>covid_bigrams &lt;-<span class="st"> </span>covid_tweets <span class="op">%&gt;%</span></span>
+<span id="cb94-2"><a href="tokeninzing-by-n-grams.html#cb94-2"></a><span class="st">  </span><span class="kw">select</span>(OriginalTweet, Sentiment) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb94-3"><a href="tokeninzing-by-n-grams.html#cb94-3"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(bigram, OriginalTweet, <span class="dt">token =</span> <span class="st">&quot;ngrams&quot;</span>, <span class="dt">n =</span> <span class="dv">2</span>)</span>
+<span id="cb94-4"><a href="tokeninzing-by-n-grams.html#cb94-4"></a></span>
+<span id="cb94-5"><a href="tokeninzing-by-n-grams.html#cb94-5"></a><span class="kw">head</span>(covid_bigrams)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##   Sentiment bigram             
 ##   &lt;chr&gt;     &lt;chr&gt;              
@@ -240,8 +248,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 Neutral   t.co ifz9fan2pa    
 ## 6 Neutral   ifz9fan2pa and</code></pre>
 <p>This output clearly needs to be filtered</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="tokeninzing-by-n-grams.html#cb52-1"></a>covid_bigrams <span class="op">%&gt;%</span></span>
-<span id="cb52-2"><a href="tokeninzing-by-n-grams.html#cb52-2"></a><span class="st">  </span><span class="kw">count</span>(bigram, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="tokeninzing-by-n-grams.html#cb96-1"></a>covid_bigrams <span class="op">%&gt;%</span></span>
+<span id="cb96-2"><a href="tokeninzing-by-n-grams.html#cb96-2"></a><span class="st">  </span><span class="kw">count</span>(bigram, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 474,761 × 2
 ##    bigram                n
 ##    &lt;chr&gt;             &lt;int&gt;
@@ -259,26 +267,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Filter stop-words.
 <strong>stop-words: uninteresting or common words such as “of”, “the”, “be”</strong></p>
 <p>In order to filter out stop words, we need to separate out the bigrams into separate columns using the <code>separate()</code> function from <code>tidyr</code>.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="tokeninzing-by-n-grams.html#cb54-1"></a><span class="kw">library</span>(tidyr)</span>
-<span id="cb54-2"><a href="tokeninzing-by-n-grams.html#cb54-2"></a></span>
-<span id="cb54-3"><a href="tokeninzing-by-n-grams.html#cb54-3"></a>bigrams_separated &lt;-<span class="st"> </span>covid_bigrams <span class="op">%&gt;%</span></span>
-<span id="cb54-4"><a href="tokeninzing-by-n-grams.html#cb54-4"></a><span class="st">  </span><span class="kw">separate</span>(bigram, <span class="kw">c</span>(<span class="st">&quot;word1&quot;</span>, <span class="st">&quot;word2&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)</span>
-<span id="cb54-5"><a href="tokeninzing-by-n-grams.html#cb54-5"></a></span>
-<span id="cb54-6"><a href="tokeninzing-by-n-grams.html#cb54-6"></a><span class="co"># n = 1,275,993 to n = 393,315</span></span>
-<span id="cb54-7"><a href="tokeninzing-by-n-grams.html#cb54-7"></a>bigrams_filtered &lt;-<span class="st"> </span>bigrams_separated <span class="op">%&gt;%</span></span>
-<span id="cb54-8"><a href="tokeninzing-by-n-grams.html#cb54-8"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>word1 <span class="op">%in%</span><span class="st"> </span>stop_words<span class="op">$</span>word) <span class="op">%&gt;%</span></span>
-<span id="cb54-9"><a href="tokeninzing-by-n-grams.html#cb54-9"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>word2 <span class="op">%in%</span><span class="st"> </span>stop_words<span class="op">$</span>word)</span>
-<span id="cb54-10"><a href="tokeninzing-by-n-grams.html#cb54-10"></a></span>
-<span id="cb54-11"><a href="tokeninzing-by-n-grams.html#cb54-11"></a><span class="co"># new bigram counts:</span></span>
-<span id="cb54-12"><a href="tokeninzing-by-n-grams.html#cb54-12"></a>bigram_counts &lt;-<span class="st"> </span>bigrams_filtered <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb54-13"><a href="tokeninzing-by-n-grams.html#cb54-13"></a><span class="st">  </span><span class="kw">count</span>(word1, word2, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb54-14"><a href="tokeninzing-by-n-grams.html#cb54-14"></a><span class="co"># n = 216,367</span></span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="tokeninzing-by-n-grams.html#cb98-1"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb98-2"><a href="tokeninzing-by-n-grams.html#cb98-2"></a></span>
+<span id="cb98-3"><a href="tokeninzing-by-n-grams.html#cb98-3"></a>bigrams_separated &lt;-<span class="st"> </span>covid_bigrams <span class="op">%&gt;%</span></span>
+<span id="cb98-4"><a href="tokeninzing-by-n-grams.html#cb98-4"></a><span class="st">  </span><span class="kw">separate</span>(bigram, <span class="kw">c</span>(<span class="st">&quot;word1&quot;</span>, <span class="st">&quot;word2&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)</span>
+<span id="cb98-5"><a href="tokeninzing-by-n-grams.html#cb98-5"></a></span>
+<span id="cb98-6"><a href="tokeninzing-by-n-grams.html#cb98-6"></a><span class="co"># n = 1,275,993 to n = 393,315</span></span>
+<span id="cb98-7"><a href="tokeninzing-by-n-grams.html#cb98-7"></a>bigrams_filtered &lt;-<span class="st"> </span>bigrams_separated <span class="op">%&gt;%</span></span>
+<span id="cb98-8"><a href="tokeninzing-by-n-grams.html#cb98-8"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>word1 <span class="op">%in%</span><span class="st"> </span>stop_words<span class="op">$</span>word) <span class="op">%&gt;%</span></span>
+<span id="cb98-9"><a href="tokeninzing-by-n-grams.html#cb98-9"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>word2 <span class="op">%in%</span><span class="st"> </span>stop_words<span class="op">$</span>word)</span>
+<span id="cb98-10"><a href="tokeninzing-by-n-grams.html#cb98-10"></a></span>
+<span id="cb98-11"><a href="tokeninzing-by-n-grams.html#cb98-11"></a><span class="co"># new bigram counts:</span></span>
+<span id="cb98-12"><a href="tokeninzing-by-n-grams.html#cb98-12"></a>bigram_counts &lt;-<span class="st"> </span>bigrams_filtered <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb98-13"><a href="tokeninzing-by-n-grams.html#cb98-13"></a><span class="st">  </span><span class="kw">count</span>(word1, word2, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb98-14"><a href="tokeninzing-by-n-grams.html#cb98-14"></a><span class="co"># n = 216,367</span></span></code></pre></div>
 <p>Clearly there are a lot of people posting links on Twitter (t.co) because of the shortened URLs.</p>
 <p>Now that we’ve filtered out the stopwords, let’s unite the words to create more true bigrams (no stopwords) again.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="tokeninzing-by-n-grams.html#cb55-1"></a>bigrams_united &lt;-<span class="st"> </span>bigrams_filtered <span class="op">%&gt;%</span></span>
-<span id="cb55-2"><a href="tokeninzing-by-n-grams.html#cb55-2"></a><span class="st">  </span><span class="kw">unite</span>(bigram, word1, word2, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)</span>
-<span id="cb55-3"><a href="tokeninzing-by-n-grams.html#cb55-3"></a></span>
-<span id="cb55-4"><a href="tokeninzing-by-n-grams.html#cb55-4"></a>bigrams_united</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="tokeninzing-by-n-grams.html#cb99-1"></a>bigrams_united &lt;-<span class="st"> </span>bigrams_filtered <span class="op">%&gt;%</span></span>
+<span id="cb99-2"><a href="tokeninzing-by-n-grams.html#cb99-2"></a><span class="st">  </span><span class="kw">unite</span>(bigram, word1, word2, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)</span>
+<span id="cb99-3"><a href="tokeninzing-by-n-grams.html#cb99-3"></a></span>
+<span id="cb99-4"><a href="tokeninzing-by-n-grams.html#cb99-4"></a>bigrams_united</span></code></pre></div>
 <pre><code>## # A tibble: 393,315 × 2
 ##    Sentiment bigram             
 ##    &lt;chr&gt;     &lt;chr&gt;              
@@ -294,14 +302,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Positive  advice talk        
 ## # … with 393,305 more rows</code></pre>
 <p><strong>IF we were interested in trigrams, we can repeat the sequence with n=3</strong></p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="tokeninzing-by-n-grams.html#cb57-1"></a>covid_tweets <span class="op">%&gt;%</span></span>
-<span id="cb57-2"><a href="tokeninzing-by-n-grams.html#cb57-2"></a><span class="st">  </span><span class="kw">select</span>(OriginalTweet, Sentiment) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb57-3"><a href="tokeninzing-by-n-grams.html#cb57-3"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(trigram, OriginalTweet, <span class="dt">token =</span> <span class="st">&quot;ngrams&quot;</span>, <span class="dt">n =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></span>
-<span id="cb57-4"><a href="tokeninzing-by-n-grams.html#cb57-4"></a><span class="st">  </span><span class="kw">separate</span>(trigram, <span class="kw">c</span>(<span class="st">&quot;word1&quot;</span>, <span class="st">&quot;word2&quot;</span>, <span class="st">&quot;word3&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb57-5"><a href="tokeninzing-by-n-grams.html#cb57-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>word1 <span class="op">%in%</span><span class="st"> </span>stop_words<span class="op">$</span>word,</span>
-<span id="cb57-6"><a href="tokeninzing-by-n-grams.html#cb57-6"></a>         <span class="op">!</span>word2 <span class="op">%in%</span><span class="st"> </span>stop_words<span class="op">$</span>word,</span>
-<span id="cb57-7"><a href="tokeninzing-by-n-grams.html#cb57-7"></a>         <span class="op">!</span>word3 <span class="op">%in%</span><span class="st"> </span>stop_words<span class="op">$</span>word) <span class="op">%&gt;%</span></span>
-<span id="cb57-8"><a href="tokeninzing-by-n-grams.html#cb57-8"></a><span class="st">  </span><span class="kw">count</span>(word1, word2, word3, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="tokeninzing-by-n-grams.html#cb101-1"></a>covid_tweets <span class="op">%&gt;%</span></span>
+<span id="cb101-2"><a href="tokeninzing-by-n-grams.html#cb101-2"></a><span class="st">  </span><span class="kw">select</span>(OriginalTweet, Sentiment) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb101-3"><a href="tokeninzing-by-n-grams.html#cb101-3"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(trigram, OriginalTweet, <span class="dt">token =</span> <span class="st">&quot;ngrams&quot;</span>, <span class="dt">n =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></span>
+<span id="cb101-4"><a href="tokeninzing-by-n-grams.html#cb101-4"></a><span class="st">  </span><span class="kw">separate</span>(trigram, <span class="kw">c</span>(<span class="st">&quot;word1&quot;</span>, <span class="st">&quot;word2&quot;</span>, <span class="st">&quot;word3&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb101-5"><a href="tokeninzing-by-n-grams.html#cb101-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>word1 <span class="op">%in%</span><span class="st"> </span>stop_words<span class="op">$</span>word,</span>
+<span id="cb101-6"><a href="tokeninzing-by-n-grams.html#cb101-6"></a>         <span class="op">!</span>word2 <span class="op">%in%</span><span class="st"> </span>stop_words<span class="op">$</span>word,</span>
+<span id="cb101-7"><a href="tokeninzing-by-n-grams.html#cb101-7"></a>         <span class="op">!</span>word3 <span class="op">%in%</span><span class="st"> </span>stop_words<span class="op">$</span>word) <span class="op">%&gt;%</span></span>
+<span id="cb101-8"><a href="tokeninzing-by-n-grams.html#cb101-8"></a><span class="st">  </span><span class="kw">count</span>(word1, word2, word3, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 187,821 × 4
 ##    word1       word2 word3        n
 ##    &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;
@@ -319,9 +327,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="analyzing-bigrams" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Analyzing bigrams</h3>
 <p>This dataset does not really give us a grouping variable like the Austen data but they do include sentiment. Let’s try grouping by sentiments the curators have determined the tweets to be to get the which words are most associated with “shopping”.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="tokeninzing-by-n-grams.html#cb59-1"></a>bigrams_filtered <span class="op">%&gt;%</span></span>
-<span id="cb59-2"><a href="tokeninzing-by-n-grams.html#cb59-2"></a><span class="st">  </span><span class="kw">filter</span>(word2 <span class="op">==</span><span class="st"> &quot;shopping&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb59-3"><a href="tokeninzing-by-n-grams.html#cb59-3"></a><span class="st">  </span><span class="kw">count</span>(Sentiment, word1, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="tokeninzing-by-n-grams.html#cb103-1"></a>bigrams_filtered <span class="op">%&gt;%</span></span>
+<span id="cb103-2"><a href="tokeninzing-by-n-grams.html#cb103-2"></a><span class="st">  </span><span class="kw">filter</span>(word2 <span class="op">==</span><span class="st"> &quot;shopping&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb103-3"><a href="tokeninzing-by-n-grams.html#cb103-3"></a><span class="st">  </span><span class="kw">count</span>(Sentiment, word1, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 571 × 3
 ##    Sentiment          word1       n
 ##    &lt;chr&gt;              &lt;chr&gt;   &lt;int&gt;
@@ -337,12 +345,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Negative           panic      39
 ## # … with 561 more rows</code></pre>
 <p>Bigrams can be used treated like documents. We can look at the tf-idf and visualize based on sentiment.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="tokeninzing-by-n-grams.html#cb61-1"></a>bigram_tf_idf &lt;-<span class="st"> </span>bigrams_united <span class="op">%&gt;%</span></span>
-<span id="cb61-2"><a href="tokeninzing-by-n-grams.html#cb61-2"></a><span class="st">  </span><span class="kw">count</span>(Sentiment, bigram) <span class="op">%&gt;%</span></span>
-<span id="cb61-3"><a href="tokeninzing-by-n-grams.html#cb61-3"></a><span class="st">  </span><span class="kw">bind_tf_idf</span>(bigram, Sentiment, n) <span class="op">%&gt;%</span></span>
-<span id="cb61-4"><a href="tokeninzing-by-n-grams.html#cb61-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(tf_idf))</span>
-<span id="cb61-5"><a href="tokeninzing-by-n-grams.html#cb61-5"></a></span>
-<span id="cb61-6"><a href="tokeninzing-by-n-grams.html#cb61-6"></a>bigram_tf_idf</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="tokeninzing-by-n-grams.html#cb105-1"></a>bigram_tf_idf &lt;-<span class="st"> </span>bigrams_united <span class="op">%&gt;%</span></span>
+<span id="cb105-2"><a href="tokeninzing-by-n-grams.html#cb105-2"></a><span class="st">  </span><span class="kw">count</span>(Sentiment, bigram) <span class="op">%&gt;%</span></span>
+<span id="cb105-3"><a href="tokeninzing-by-n-grams.html#cb105-3"></a><span class="st">  </span><span class="kw">bind_tf_idf</span>(bigram, Sentiment, n) <span class="op">%&gt;%</span></span>
+<span id="cb105-4"><a href="tokeninzing-by-n-grams.html#cb105-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(tf_idf))</span>
+<span id="cb105-5"><a href="tokeninzing-by-n-grams.html#cb105-5"></a></span>
+<span id="cb105-6"><a href="tokeninzing-by-n-grams.html#cb105-6"></a>bigram_tf_idf</span></code></pre></div>
 <pre><code>## # A tibble: 252,318 × 6
 ##    Sentiment          bigram                     n       tf   idf   tf_idf
 ##    &lt;chr&gt;              &lt;chr&gt;                  &lt;int&gt;    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
@@ -358,26 +366,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Extremely Positive friends safe              12 0.000180 1.61  0.000290
 ## # … with 252,308 more rows</code></pre>
 <p><strong>Visualizing tf-idf</strong></p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="tokeninzing-by-n-grams.html#cb63-1"></a><span class="kw">library</span>(forcats)</span>
-<span id="cb63-2"><a href="tokeninzing-by-n-grams.html#cb63-2"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb63-3"><a href="tokeninzing-by-n-grams.html#cb63-3"></a></span>
-<span id="cb63-4"><a href="tokeninzing-by-n-grams.html#cb63-4"></a>bigram_tf_idf <span class="op">%&gt;%</span></span>
-<span id="cb63-5"><a href="tokeninzing-by-n-grams.html#cb63-5"></a><span class="st">  </span><span class="kw">group_by</span>(Sentiment) <span class="op">%&gt;%</span></span>
-<span id="cb63-6"><a href="tokeninzing-by-n-grams.html#cb63-6"></a><span class="st">  </span><span class="kw">slice_max</span>(tf_idf, <span class="dt">n =</span> <span class="dv">15</span>) <span class="op">%&gt;%</span></span>
-<span id="cb63-7"><a href="tokeninzing-by-n-grams.html#cb63-7"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
-<span id="cb63-8"><a href="tokeninzing-by-n-grams.html#cb63-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(tf_idf, <span class="kw">fct_reorder</span>(bigram, tf_idf), <span class="dt">fill =</span> Sentiment)) <span class="op">+</span></span>
-<span id="cb63-9"><a href="tokeninzing-by-n-grams.html#cb63-9"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb63-10"><a href="tokeninzing-by-n-grams.html#cb63-10"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Sentiment, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span></span>
-<span id="cb63-11"><a href="tokeninzing-by-n-grams.html#cb63-11"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;tf-idf&quot;</span>, <span class="dt">y =</span> <span class="ot">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="tokeninzing-by-n-grams.html#cb107-1"></a><span class="kw">library</span>(forcats)</span>
+<span id="cb107-2"><a href="tokeninzing-by-n-grams.html#cb107-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb107-3"><a href="tokeninzing-by-n-grams.html#cb107-3"></a></span>
+<span id="cb107-4"><a href="tokeninzing-by-n-grams.html#cb107-4"></a>bigram_tf_idf <span class="op">%&gt;%</span></span>
+<span id="cb107-5"><a href="tokeninzing-by-n-grams.html#cb107-5"></a><span class="st">  </span><span class="kw">group_by</span>(Sentiment) <span class="op">%&gt;%</span></span>
+<span id="cb107-6"><a href="tokeninzing-by-n-grams.html#cb107-6"></a><span class="st">  </span><span class="kw">slice_max</span>(tf_idf, <span class="dt">n =</span> <span class="dv">15</span>) <span class="op">%&gt;%</span></span>
+<span id="cb107-7"><a href="tokeninzing-by-n-grams.html#cb107-7"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb107-8"><a href="tokeninzing-by-n-grams.html#cb107-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(tf_idf, <span class="kw">fct_reorder</span>(bigram, tf_idf), <span class="dt">fill =</span> Sentiment)) <span class="op">+</span></span>
+<span id="cb107-9"><a href="tokeninzing-by-n-grams.html#cb107-9"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb107-10"><a href="tokeninzing-by-n-grams.html#cb107-10"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Sentiment, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span></span>
+<span id="cb107-11"><a href="tokeninzing-by-n-grams.html#cb107-11"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;tf-idf&quot;</span>, <span class="dt">y =</span> <span class="ot">NULL</span>)</span></code></pre></div>
 <p><img src="bookclub-tidytext_files/figure-html/04-example1_ggplot-1.png" width="672" /></p>
 <p><em>Takeaway- bigrams are informative and can make tokens more understandable they do make the counts more sparse (a two-word pair is more rare). These can be useful in very large datasets</em></p>
 </div>
 <div id="using-bigrams-to-provide-context-in-sentiment-analysis" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Using bigrams to provide context in sentiment analysis</h3>
 <p>This dataset already contains sentiment of the overall tweet but as we saw in the tf-idf visual, they don’t really make much sense in context of just the bigram. So, let’s re-do it. This could make a difference given the context, such as the usage of “not” before “happy”.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="tokeninzing-by-n-grams.html#cb64-1"></a>bigrams_separated <span class="op">%&gt;%</span></span>
-<span id="cb64-2"><a href="tokeninzing-by-n-grams.html#cb64-2"></a><span class="st">  </span><span class="kw">filter</span>(word1 <span class="op">==</span><span class="st"> &quot;not&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb64-3"><a href="tokeninzing-by-n-grams.html#cb64-3"></a><span class="st">  </span><span class="kw">count</span>(word1, word2, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="tokeninzing-by-n-grams.html#cb108-1"></a>bigrams_separated <span class="op">%&gt;%</span></span>
+<span id="cb108-2"><a href="tokeninzing-by-n-grams.html#cb108-2"></a><span class="st">  </span><span class="kw">filter</span>(word1 <span class="op">==</span><span class="st"> &quot;not&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb108-3"><a href="tokeninzing-by-n-grams.html#cb108-3"></a><span class="st">  </span><span class="kw">count</span>(word1, word2, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1,135 × 3
 ##    word1 word2     n
 ##    &lt;chr&gt; &lt;chr&gt; &lt;int&gt;
@@ -394,83 +402,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # … with 1,125 more rows</code></pre>
 <p>AFINN will be used to assign a numeric value for each word associated with “not”.</p>
 <p>Note: You need to run <code>get_sentiments</code> interactively (to approve the download) per licensing requirements, so we can’t show those results in this online version.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="tokeninzing-by-n-grams.html#cb66-1"></a>AFINN &lt;-<span class="st"> </span><span class="kw">get_sentiments</span>(<span class="st">&quot;afinn&quot;</span>)</span>
-<span id="cb66-2"><a href="tokeninzing-by-n-grams.html#cb66-2"></a></span>
-<span id="cb66-3"><a href="tokeninzing-by-n-grams.html#cb66-3"></a><span class="co"># get the most frequent words preceded by &quot;not&quot;</span></span>
-<span id="cb66-4"><a href="tokeninzing-by-n-grams.html#cb66-4"></a>not_words &lt;-<span class="st"> </span>bigrams_separated <span class="op">%&gt;%</span></span>
-<span id="cb66-5"><a href="tokeninzing-by-n-grams.html#cb66-5"></a><span class="st">  </span><span class="kw">filter</span>(word1 <span class="op">==</span><span class="st"> &quot;not&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb66-6"><a href="tokeninzing-by-n-grams.html#cb66-6"></a><span class="st">  </span><span class="kw">inner_join</span>(AFINN, <span class="dt">by =</span> <span class="kw">c</span>(<span class="dt">word2 =</span> <span class="st">&quot;word&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb66-7"><a href="tokeninzing-by-n-grams.html#cb66-7"></a><span class="st">  </span><span class="kw">count</span>(word2, value, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb66-8"><a href="tokeninzing-by-n-grams.html#cb66-8"></a></span>
-<span id="cb66-9"><a href="tokeninzing-by-n-grams.html#cb66-9"></a><span class="co"># n = 194</span></span>
-<span id="cb66-10"><a href="tokeninzing-by-n-grams.html#cb66-10"></a>not_words</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="tokeninzing-by-n-grams.html#cb110-1"></a>AFINN &lt;-<span class="st"> </span><span class="kw">get_sentiments</span>(<span class="st">&quot;afinn&quot;</span>)</span>
+<span id="cb110-2"><a href="tokeninzing-by-n-grams.html#cb110-2"></a></span>
+<span id="cb110-3"><a href="tokeninzing-by-n-grams.html#cb110-3"></a><span class="co"># get the most frequent words preceded by &quot;not&quot;</span></span>
+<span id="cb110-4"><a href="tokeninzing-by-n-grams.html#cb110-4"></a>not_words &lt;-<span class="st"> </span>bigrams_separated <span class="op">%&gt;%</span></span>
+<span id="cb110-5"><a href="tokeninzing-by-n-grams.html#cb110-5"></a><span class="st">  </span><span class="kw">filter</span>(word1 <span class="op">==</span><span class="st"> &quot;not&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb110-6"><a href="tokeninzing-by-n-grams.html#cb110-6"></a><span class="st">  </span><span class="kw">inner_join</span>(AFINN, <span class="dt">by =</span> <span class="kw">c</span>(<span class="dt">word2 =</span> <span class="st">&quot;word&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb110-7"><a href="tokeninzing-by-n-grams.html#cb110-7"></a><span class="st">  </span><span class="kw">count</span>(word2, value, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb110-8"><a href="tokeninzing-by-n-grams.html#cb110-8"></a></span>
+<span id="cb110-9"><a href="tokeninzing-by-n-grams.html#cb110-9"></a><span class="co"># n = 194</span></span>
+<span id="cb110-10"><a href="tokeninzing-by-n-grams.html#cb110-10"></a>not_words</span></code></pre></div>
 <p>The most common sentiment-associated word following “not” is “panic”. Panic is pretty negative but NOT panic can be more positive.</p>
 <p>Computing how influential the certain words were in understanding the context in the wrong direction.
 <em>This is done in the book by multiplying the their frequency by their sentiment value.</em></p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="tokeninzing-by-n-grams.html#cb67-1"></a>not_words <span class="op">%&gt;%</span></span>
-<span id="cb67-2"><a href="tokeninzing-by-n-grams.html#cb67-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">contribution =</span> n <span class="op">*</span><span class="st"> </span>value) <span class="op">%&gt;%</span></span>
-<span id="cb67-3"><a href="tokeninzing-by-n-grams.html#cb67-3"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(<span class="kw">abs</span>(contribution))) <span class="op">%&gt;%</span></span>
-<span id="cb67-4"><a href="tokeninzing-by-n-grams.html#cb67-4"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">20</span>) <span class="op">%&gt;%</span></span>
-<span id="cb67-5"><a href="tokeninzing-by-n-grams.html#cb67-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">word2 =</span> <span class="kw">reorder</span>(word2, contribution)) <span class="op">%&gt;%</span></span>
-<span id="cb67-6"><a href="tokeninzing-by-n-grams.html#cb67-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(n <span class="op">*</span><span class="st"> </span>value, word2, <span class="dt">fill =</span> n <span class="op">*</span><span class="st"> </span>value <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)) <span class="op">+</span></span>
-<span id="cb67-7"><a href="tokeninzing-by-n-grams.html#cb67-7"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb67-8"><a href="tokeninzing-by-n-grams.html#cb67-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Sentiment value * number of occurrences&quot;</span>,</span>
-<span id="cb67-9"><a href="tokeninzing-by-n-grams.html#cb67-9"></a>       <span class="dt">y =</span> <span class="st">&quot;Words preceded by </span><span class="ch">\&quot;</span><span class="st">not</span><span class="ch">\&quot;</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="tokeninzing-by-n-grams.html#cb111-1"></a>not_words <span class="op">%&gt;%</span></span>
+<span id="cb111-2"><a href="tokeninzing-by-n-grams.html#cb111-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">contribution =</span> n <span class="op">*</span><span class="st"> </span>value) <span class="op">%&gt;%</span></span>
+<span id="cb111-3"><a href="tokeninzing-by-n-grams.html#cb111-3"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(<span class="kw">abs</span>(contribution))) <span class="op">%&gt;%</span></span>
+<span id="cb111-4"><a href="tokeninzing-by-n-grams.html#cb111-4"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">20</span>) <span class="op">%&gt;%</span></span>
+<span id="cb111-5"><a href="tokeninzing-by-n-grams.html#cb111-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">word2 =</span> <span class="kw">reorder</span>(word2, contribution)) <span class="op">%&gt;%</span></span>
+<span id="cb111-6"><a href="tokeninzing-by-n-grams.html#cb111-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(n <span class="op">*</span><span class="st"> </span>value, word2, <span class="dt">fill =</span> n <span class="op">*</span><span class="st"> </span>value <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb111-7"><a href="tokeninzing-by-n-grams.html#cb111-7"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb111-8"><a href="tokeninzing-by-n-grams.html#cb111-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Sentiment value * number of occurrences&quot;</span>,</span>
+<span id="cb111-9"><a href="tokeninzing-by-n-grams.html#cb111-9"></a>       <span class="dt">y =</span> <span class="st">&quot;Words preceded by </span><span class="ch">\&quot;</span><span class="st">not</span><span class="ch">\&quot;</span><span class="st">&quot;</span>)</span></code></pre></div>
 <p>Panic looks <em>very influential</em>.</p>
 <p><strong>Let’s try again with more negation terms</strong></p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="tokeninzing-by-n-grams.html#cb68-1"></a>negation_words &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;not&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;never&quot;</span>, <span class="st">&quot;without&quot;</span>)</span>
-<span id="cb68-2"><a href="tokeninzing-by-n-grams.html#cb68-2"></a></span>
-<span id="cb68-3"><a href="tokeninzing-by-n-grams.html#cb68-3"></a>negated_words &lt;-<span class="st"> </span>bigrams_separated <span class="op">%&gt;%</span></span>
-<span id="cb68-4"><a href="tokeninzing-by-n-grams.html#cb68-4"></a><span class="st">  </span><span class="kw">filter</span>(word1 <span class="op">%in%</span><span class="st"> </span>negation_words) <span class="op">%&gt;%</span></span>
-<span id="cb68-5"><a href="tokeninzing-by-n-grams.html#cb68-5"></a><span class="st">  </span><span class="kw">inner_join</span>(AFINN, <span class="dt">by =</span> <span class="kw">c</span>(<span class="dt">word2 =</span> <span class="st">&quot;word&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb68-6"><a href="tokeninzing-by-n-grams.html#cb68-6"></a><span class="st">  </span><span class="kw">count</span>(word1, word2, value, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb68-7"><a href="tokeninzing-by-n-grams.html#cb68-7"></a><span class="co"># n=342</span></span>
-<span id="cb68-8"><a href="tokeninzing-by-n-grams.html#cb68-8"></a></span>
-<span id="cb68-9"><a href="tokeninzing-by-n-grams.html#cb68-9"></a>negated_words <span class="op">%&gt;%</span></span>
-<span id="cb68-10"><a href="tokeninzing-by-n-grams.html#cb68-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">contribution =</span> n <span class="op">*</span><span class="st"> </span>value) <span class="op">%&gt;%</span></span>
-<span id="cb68-11"><a href="tokeninzing-by-n-grams.html#cb68-11"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(<span class="kw">abs</span>(contribution))) <span class="op">%&gt;%</span></span>
-<span id="cb68-12"><a href="tokeninzing-by-n-grams.html#cb68-12"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">20</span>) <span class="op">%&gt;%</span></span>
-<span id="cb68-13"><a href="tokeninzing-by-n-grams.html#cb68-13"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">word2 =</span> <span class="kw">reorder</span>(word2, contribution)) <span class="op">%&gt;%</span></span>
-<span id="cb68-14"><a href="tokeninzing-by-n-grams.html#cb68-14"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(n <span class="op">*</span><span class="st"> </span>value, word2, <span class="dt">fill =</span> n <span class="op">*</span><span class="st"> </span>value <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)) <span class="op">+</span></span>
-<span id="cb68-15"><a href="tokeninzing-by-n-grams.html#cb68-15"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb68-16"><a href="tokeninzing-by-n-grams.html#cb68-16"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>word1, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span></span>
-<span id="cb68-17"><a href="tokeninzing-by-n-grams.html#cb68-17"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Sentiment value * number of occurrences&quot;</span>,</span>
-<span id="cb68-18"><a href="tokeninzing-by-n-grams.html#cb68-18"></a>       <span class="dt">y =</span> <span class="st">&quot;Words preceded by </span><span class="ch">\&quot;</span><span class="st">not</span><span class="ch">\&quot;</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="tokeninzing-by-n-grams.html#cb112-1"></a>negation_words &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;not&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;never&quot;</span>, <span class="st">&quot;without&quot;</span>)</span>
+<span id="cb112-2"><a href="tokeninzing-by-n-grams.html#cb112-2"></a></span>
+<span id="cb112-3"><a href="tokeninzing-by-n-grams.html#cb112-3"></a>negated_words &lt;-<span class="st"> </span>bigrams_separated <span class="op">%&gt;%</span></span>
+<span id="cb112-4"><a href="tokeninzing-by-n-grams.html#cb112-4"></a><span class="st">  </span><span class="kw">filter</span>(word1 <span class="op">%in%</span><span class="st"> </span>negation_words) <span class="op">%&gt;%</span></span>
+<span id="cb112-5"><a href="tokeninzing-by-n-grams.html#cb112-5"></a><span class="st">  </span><span class="kw">inner_join</span>(AFINN, <span class="dt">by =</span> <span class="kw">c</span>(<span class="dt">word2 =</span> <span class="st">&quot;word&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb112-6"><a href="tokeninzing-by-n-grams.html#cb112-6"></a><span class="st">  </span><span class="kw">count</span>(word1, word2, value, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb112-7"><a href="tokeninzing-by-n-grams.html#cb112-7"></a><span class="co"># n=342</span></span>
+<span id="cb112-8"><a href="tokeninzing-by-n-grams.html#cb112-8"></a></span>
+<span id="cb112-9"><a href="tokeninzing-by-n-grams.html#cb112-9"></a>negated_words <span class="op">%&gt;%</span></span>
+<span id="cb112-10"><a href="tokeninzing-by-n-grams.html#cb112-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">contribution =</span> n <span class="op">*</span><span class="st"> </span>value) <span class="op">%&gt;%</span></span>
+<span id="cb112-11"><a href="tokeninzing-by-n-grams.html#cb112-11"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(<span class="kw">abs</span>(contribution))) <span class="op">%&gt;%</span></span>
+<span id="cb112-12"><a href="tokeninzing-by-n-grams.html#cb112-12"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">20</span>) <span class="op">%&gt;%</span></span>
+<span id="cb112-13"><a href="tokeninzing-by-n-grams.html#cb112-13"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">word2 =</span> <span class="kw">reorder</span>(word2, contribution)) <span class="op">%&gt;%</span></span>
+<span id="cb112-14"><a href="tokeninzing-by-n-grams.html#cb112-14"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(n <span class="op">*</span><span class="st"> </span>value, word2, <span class="dt">fill =</span> n <span class="op">*</span><span class="st"> </span>value <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb112-15"><a href="tokeninzing-by-n-grams.html#cb112-15"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb112-16"><a href="tokeninzing-by-n-grams.html#cb112-16"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>word1, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span></span>
+<span id="cb112-17"><a href="tokeninzing-by-n-grams.html#cb112-17"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Sentiment value * number of occurrences&quot;</span>,</span>
+<span id="cb112-18"><a href="tokeninzing-by-n-grams.html#cb112-18"></a>       <span class="dt">y =</span> <span class="st">&quot;Words preceded by </span><span class="ch">\&quot;</span><span class="st">not</span><span class="ch">\&quot;</span><span class="st">&quot;</span>)</span></code></pre></div>
 </div>
 <div id="visualizing-network-of-bigrams-with-ggraph" class="section level3">
 <h3><span class="header-section-number">4.2.3</span> Visualizing network of bigrams with ggraph</h3>
 <p>Relationships between words can be visualized using a node graph.
 <strong>nodes: subject (where the edge is coming from), object (where the edge is going to), edge(association between nodes that have weight)</strong></p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="tokeninzing-by-n-grams.html#cb69-1"></a><span class="kw">library</span>(igraph)</span>
-<span id="cb69-2"><a href="tokeninzing-by-n-grams.html#cb69-2"></a></span>
-<span id="cb69-3"><a href="tokeninzing-by-n-grams.html#cb69-3"></a><span class="co"># original counts</span></span>
-<span id="cb69-4"><a href="tokeninzing-by-n-grams.html#cb69-4"></a>bigram_counts</span>
-<span id="cb69-5"><a href="tokeninzing-by-n-grams.html#cb69-5"></a></span>
-<span id="cb69-6"><a href="tokeninzing-by-n-grams.html#cb69-6"></a><span class="co"># filter for only relatively common combinations</span></span>
-<span id="cb69-7"><a href="tokeninzing-by-n-grams.html#cb69-7"></a>bigram_graph &lt;-<span class="st"> </span>bigram_counts <span class="op">%&gt;%</span></span>
-<span id="cb69-8"><a href="tokeninzing-by-n-grams.html#cb69-8"></a><span class="st">  </span><span class="kw">filter</span>(n <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>) <span class="op">%&gt;%</span></span>
-<span id="cb69-9"><a href="tokeninzing-by-n-grams.html#cb69-9"></a><span class="st">  </span><span class="kw">graph_from_data_frame</span>()</span>
-<span id="cb69-10"><a href="tokeninzing-by-n-grams.html#cb69-10"></a></span>
-<span id="cb69-11"><a href="tokeninzing-by-n-grams.html#cb69-11"></a>bigram_graph</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="tokeninzing-by-n-grams.html#cb113-1"></a><span class="kw">library</span>(igraph)</span>
+<span id="cb113-2"><a href="tokeninzing-by-n-grams.html#cb113-2"></a></span>
+<span id="cb113-3"><a href="tokeninzing-by-n-grams.html#cb113-3"></a><span class="co"># original counts</span></span>
+<span id="cb113-4"><a href="tokeninzing-by-n-grams.html#cb113-4"></a>bigram_counts</span>
+<span id="cb113-5"><a href="tokeninzing-by-n-grams.html#cb113-5"></a></span>
+<span id="cb113-6"><a href="tokeninzing-by-n-grams.html#cb113-6"></a><span class="co"># filter for only relatively common combinations</span></span>
+<span id="cb113-7"><a href="tokeninzing-by-n-grams.html#cb113-7"></a>bigram_graph &lt;-<span class="st"> </span>bigram_counts <span class="op">%&gt;%</span></span>
+<span id="cb113-8"><a href="tokeninzing-by-n-grams.html#cb113-8"></a><span class="st">  </span><span class="kw">filter</span>(n <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>) <span class="op">%&gt;%</span></span>
+<span id="cb113-9"><a href="tokeninzing-by-n-grams.html#cb113-9"></a><span class="st">  </span><span class="kw">graph_from_data_frame</span>()</span>
+<span id="cb113-10"><a href="tokeninzing-by-n-grams.html#cb113-10"></a></span>
+<span id="cb113-11"><a href="tokeninzing-by-n-grams.html#cb113-11"></a>bigram_graph</span></code></pre></div>
 <p>Now that the igraph object has been created, we must plot it with ggraph!</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="tokeninzing-by-n-grams.html#cb70-1"></a><span class="kw">set.seed</span>(<span class="dv">2017</span>)</span>
-<span id="cb70-2"><a href="tokeninzing-by-n-grams.html#cb70-2"></a></span>
-<span id="cb70-3"><a href="tokeninzing-by-n-grams.html#cb70-3"></a><span class="kw">ggraph</span>(bigram_graph, <span class="dt">layout =</span> <span class="st">&quot;fr&quot;</span>) <span class="op">+</span></span>
-<span id="cb70-4"><a href="tokeninzing-by-n-grams.html#cb70-4"></a><span class="st">  </span><span class="kw">geom_edge_link</span>() <span class="op">+</span></span>
-<span id="cb70-5"><a href="tokeninzing-by-n-grams.html#cb70-5"></a><span class="st">  </span><span class="kw">geom_node_point</span>() <span class="op">+</span></span>
-<span id="cb70-6"><a href="tokeninzing-by-n-grams.html#cb70-6"></a><span class="st">  </span><span class="kw">geom_node_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="tokeninzing-by-n-grams.html#cb114-1"></a><span class="kw">set.seed</span>(<span class="dv">2017</span>)</span>
+<span id="cb114-2"><a href="tokeninzing-by-n-grams.html#cb114-2"></a></span>
+<span id="cb114-3"><a href="tokeninzing-by-n-grams.html#cb114-3"></a><span class="kw">ggraph</span>(bigram_graph, <span class="dt">layout =</span> <span class="st">&quot;fr&quot;</span>) <span class="op">+</span></span>
+<span id="cb114-4"><a href="tokeninzing-by-n-grams.html#cb114-4"></a><span class="st">  </span><span class="kw">geom_edge_link</span>() <span class="op">+</span></span>
+<span id="cb114-5"><a href="tokeninzing-by-n-grams.html#cb114-5"></a><span class="st">  </span><span class="kw">geom_node_point</span>() <span class="op">+</span></span>
+<span id="cb114-6"><a href="tokeninzing-by-n-grams.html#cb114-6"></a><span class="st">  </span><span class="kw">geom_node_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>This is what it would look like:</p>
 <p><img src="img/bigramgraph-1.png" /></p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="tokeninzing-by-n-grams.html#cb71-1"></a><span class="kw">set.seed</span>(<span class="dv">2020</span>)</span>
-<span id="cb71-2"><a href="tokeninzing-by-n-grams.html#cb71-2"></a></span>
-<span id="cb71-3"><a href="tokeninzing-by-n-grams.html#cb71-3"></a>a &lt;-<span class="st"> </span>grid<span class="op">::</span><span class="kw">arrow</span>(<span class="dt">type =</span> <span class="st">&quot;closed&quot;</span>, <span class="dt">length =</span> <span class="kw">unit</span>(.<span class="dv">15</span>, <span class="st">&quot;inches&quot;</span>))</span>
-<span id="cb71-4"><a href="tokeninzing-by-n-grams.html#cb71-4"></a></span>
-<span id="cb71-5"><a href="tokeninzing-by-n-grams.html#cb71-5"></a><span class="kw">ggraph</span>(bigram_graph, <span class="dt">layout =</span> <span class="st">&quot;fr&quot;</span>) <span class="op">+</span></span>
-<span id="cb71-6"><a href="tokeninzing-by-n-grams.html#cb71-6"></a><span class="st">  </span><span class="kw">geom_edge_link</span>(<span class="kw">aes</span>(<span class="dt">edge_alpha =</span> n), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb71-7"><a href="tokeninzing-by-n-grams.html#cb71-7"></a>                 <span class="dt">arrow =</span> a, <span class="dt">end_cap =</span> <span class="kw">circle</span>(.<span class="dv">07</span>, <span class="st">&#39;inches&#39;</span>)) <span class="op">+</span></span>
-<span id="cb71-8"><a href="tokeninzing-by-n-grams.html#cb71-8"></a><span class="st">  </span><span class="kw">geom_node_point</span>(<span class="dt">color =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></span>
-<span id="cb71-9"><a href="tokeninzing-by-n-grams.html#cb71-9"></a><span class="st">  </span><span class="kw">geom_node_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb71-10"><a href="tokeninzing-by-n-grams.html#cb71-10"></a><span class="st">  </span><span class="kw">theme_void</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="tokeninzing-by-n-grams.html#cb115-1"></a><span class="kw">set.seed</span>(<span class="dv">2020</span>)</span>
+<span id="cb115-2"><a href="tokeninzing-by-n-grams.html#cb115-2"></a></span>
+<span id="cb115-3"><a href="tokeninzing-by-n-grams.html#cb115-3"></a>a &lt;-<span class="st"> </span>grid<span class="op">::</span><span class="kw">arrow</span>(<span class="dt">type =</span> <span class="st">&quot;closed&quot;</span>, <span class="dt">length =</span> <span class="kw">unit</span>(.<span class="dv">15</span>, <span class="st">&quot;inches&quot;</span>))</span>
+<span id="cb115-4"><a href="tokeninzing-by-n-grams.html#cb115-4"></a></span>
+<span id="cb115-5"><a href="tokeninzing-by-n-grams.html#cb115-5"></a><span class="kw">ggraph</span>(bigram_graph, <span class="dt">layout =</span> <span class="st">&quot;fr&quot;</span>) <span class="op">+</span></span>
+<span id="cb115-6"><a href="tokeninzing-by-n-grams.html#cb115-6"></a><span class="st">  </span><span class="kw">geom_edge_link</span>(<span class="kw">aes</span>(<span class="dt">edge_alpha =</span> n), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb115-7"><a href="tokeninzing-by-n-grams.html#cb115-7"></a>                 <span class="dt">arrow =</span> a, <span class="dt">end_cap =</span> <span class="kw">circle</span>(.<span class="dv">07</span>, <span class="st">&#39;inches&#39;</span>)) <span class="op">+</span></span>
+<span id="cb115-8"><a href="tokeninzing-by-n-grams.html#cb115-8"></a><span class="st">  </span><span class="kw">geom_node_point</span>(<span class="dt">color =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></span>
+<span id="cb115-9"><a href="tokeninzing-by-n-grams.html#cb115-9"></a><span class="st">  </span><span class="kw">geom_node_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb115-10"><a href="tokeninzing-by-n-grams.html#cb115-10"></a><span class="st">  </span><span class="kw">theme_void</span>()</span></code></pre></div>
 <p>This is a visualization of a <strong>Markov Chain</strong></p>
 <p><img src="img/bigramggraphausten2-1.png" /></p>
 <p><em>Markov Chain: common model in text analysis. It is a stochastic model that describes a sequence of possible events where the probability of a subsequent event depends on the state of the previous event. In this case, words are assigned probabilities and then the likelihood of the next word depends on the prior word. For example, in a word generator, if the word is “restaurant”, there is a good chance the following word may be “reservation”.</em></p>

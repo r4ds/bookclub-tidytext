@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Sentiment analysis with tidy data | Text Mining with R Book Club</title>
+  <title>2.3 Sentiment analysis with inner join | Text Mining with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Sentiment analysis with tidy data | Text Mining with R Book Club" />
+  <meta property="og:title" content="2.3 Sentiment analysis with inner join | Text Mining with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tidytext" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Sentiment analysis with tidy data | Text Mining with R Book Club" />
+  <meta name="twitter:title" content="2.3 Sentiment analysis with inner join | Text Mining with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="meeting-videos.html"/>
-<link rel="next" href="sentiment-analysis-with-tidy-data-1.html"/>
+<link rel="prev" href="sentimentemotion-lexicons.html"/>
+<link rel="next" href="examining-how-sentiment-changes-in-each-novel.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -201,22 +201,113 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sentiment-analysis-with-tidy-data" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Sentiment analysis with tidy data</h1>
-<p><strong>Learning objectives:</strong></p>
+<div id="sentiment-analysis-with-inner-join" class="section level2">
+<h2><span class="header-section-number">2.3</span> Sentiment analysis with inner join</h2>
 <ul>
-<li><p>Learn how to use tidytext approach to find sentiment of a text</p></li>
-<li><p>Learn about diff sentiment lexicon</p></li>
-<li><p>Learn how to use Wordcloud</p></li>
+<li><p>With data in a tidy format, sentiment analysis can be done as an <strong>inner join</strong>.</p></li>
+<li><p>text mining as a tidy data analysis task; much as removing stop words is an <strong>antijoin</strong> operation, performing sentiment analysis is an <strong>inner join</strong> operation.</p></li>
 </ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="sentiment-analysis-with-inner-join.html#cb51-1"></a><span class="kw">austen_books</span>() </span></code></pre></div>
+<pre><code>## # A tibble: 73,422 × 2
+##    text                    book               
+##  * &lt;chr&gt;                   &lt;fct&gt;              
+##  1 &quot;SENSE AND SENSIBILITY&quot; Sense &amp; Sensibility
+##  2 &quot;&quot;                      Sense &amp; Sensibility
+##  3 &quot;by Jane Austen&quot;        Sense &amp; Sensibility
+##  4 &quot;&quot;                      Sense &amp; Sensibility
+##  5 &quot;(1811)&quot;                Sense &amp; Sensibility
+##  6 &quot;&quot;                      Sense &amp; Sensibility
+##  7 &quot;&quot;                      Sense &amp; Sensibility
+##  8 &quot;&quot;                      Sense &amp; Sensibility
+##  9 &quot;&quot;                      Sense &amp; Sensibility
+## 10 &quot;CHAPTER 1&quot;             Sense &amp; Sensibility
+## # … with 73,412 more rows</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="sentiment-analysis-with-inner-join.html#cb53-1"></a>(books &lt;-<span class="st"> </span><span class="kw">austen_books</span>() <span class="op">%&gt;%</span></span>
+<span id="cb53-2"><a href="sentiment-analysis-with-inner-join.html#cb53-2"></a><span class="st">  </span><span class="kw">group_by</span>(book) <span class="op">%&gt;%</span></span>
+<span id="cb53-3"><a href="sentiment-analysis-with-inner-join.html#cb53-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">linenumber =</span> <span class="kw">row_number</span>(),</span>
+<span id="cb53-4"><a href="sentiment-analysis-with-inner-join.html#cb53-4"></a>         <span class="dt">chapter =</span> <span class="kw">cumsum</span>(<span class="kw">str_detect</span>(text, <span class="kw">regex</span>(<span class="st">&quot;^chapter [</span><span class="ch">\\</span><span class="st">divxlc]&quot;</span>, </span>
+<span id="cb53-5"><a href="sentiment-analysis-with-inner-join.html#cb53-5"></a>                                      <span class="dt">ignore_case =</span> <span class="ot">TRUE</span>)))) <span class="op">%&gt;%</span></span>
+<span id="cb53-6"><a href="sentiment-analysis-with-inner-join.html#cb53-6"></a><span class="st">                                      </span><span class="kw">ungroup</span>() )</span></code></pre></div>
+<pre><code>## # A tibble: 73,422 × 4
+##    text                    book                linenumber chapter
+##    &lt;chr&gt;                   &lt;fct&gt;                    &lt;int&gt;   &lt;int&gt;
+##  1 &quot;SENSE AND SENSIBILITY&quot; Sense &amp; Sensibility          1       0
+##  2 &quot;&quot;                      Sense &amp; Sensibility          2       0
+##  3 &quot;by Jane Austen&quot;        Sense &amp; Sensibility          3       0
+##  4 &quot;&quot;                      Sense &amp; Sensibility          4       0
+##  5 &quot;(1811)&quot;                Sense &amp; Sensibility          5       0
+##  6 &quot;&quot;                      Sense &amp; Sensibility          6       0
+##  7 &quot;&quot;                      Sense &amp; Sensibility          7       0
+##  8 &quot;&quot;                      Sense &amp; Sensibility          8       0
+##  9 &quot;&quot;                      Sense &amp; Sensibility          9       0
+## 10 &quot;CHAPTER 1&quot;             Sense &amp; Sensibility         10       1
+## # … with 73,412 more rows</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="sentiment-analysis-with-inner-join.html#cb55-1"></a>(tidy_books &lt;-<span class="st"> </span>books <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb55-2"><a href="sentiment-analysis-with-inner-join.html#cb55-2"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(words, text))</span></code></pre></div>
+<pre><code>## # A tibble: 725,055 × 4
+##    book                linenumber chapter words      
+##    &lt;fct&gt;                    &lt;int&gt;   &lt;int&gt; &lt;chr&gt;      
+##  1 Sense &amp; Sensibility          1       0 sense      
+##  2 Sense &amp; Sensibility          1       0 and        
+##  3 Sense &amp; Sensibility          1       0 sensibility
+##  4 Sense &amp; Sensibility          3       0 by         
+##  5 Sense &amp; Sensibility          3       0 jane       
+##  6 Sense &amp; Sensibility          3       0 austen     
+##  7 Sense &amp; Sensibility          5       0 1811       
+##  8 Sense &amp; Sensibility         10       1 chapter    
+##  9 Sense &amp; Sensibility         10       1 1          
+## 10 Sense &amp; Sensibility         13       1 the        
+## # … with 725,045 more rows</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="sentiment-analysis-with-inner-join.html#cb57-1"></a><span class="co"># nrc_joy &lt;- get_sentiments(&quot;nrc&quot;) # does not work</span></span>
+<span id="cb57-2"><a href="sentiment-analysis-with-inner-join.html#cb57-2"></a></span>
+<span id="cb57-3"><a href="sentiment-analysis-with-inner-join.html#cb57-3"></a>nrc_emotions_lex &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="st">&quot;data/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb57-4"><a href="sentiment-analysis-with-inner-join.html#cb57-4"></a><span class="st">  </span><span class="kw">rename</span>( <span class="st">&quot;words&quot;</span> =<span class="st"> </span><span class="dv">1</span>,  <span class="st">&quot;sentiment&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;score&quot;</span> =<span class="st"> </span><span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb57-5"><a href="sentiment-analysis-with-inner-join.html#cb57-5"></a><span class="st">   </span><span class="kw">select</span>(<span class="op">-</span>score)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="sentiment-analysis-with-inner-join.html#cb58-1"></a>nrc_joy &lt;-<span class="st"> </span>nrc_emotions_lex <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb58-2"><a href="sentiment-analysis-with-inner-join.html#cb58-2"></a><span class="st">  </span><span class="kw">filter</span>(sentiment <span class="op">==</span><span class="st"> &quot;joy&quot;</span>)</span>
+<span id="cb58-3"><a href="sentiment-analysis-with-inner-join.html#cb58-3"></a></span>
+<span id="cb58-4"><a href="sentiment-analysis-with-inner-join.html#cb58-4"></a>nrc_joy</span></code></pre></div>
+<pre><code>## # A tibble: 14,182 × 2
+##    words       sentiment
+##    &lt;chr&gt;       &lt;chr&gt;    
+##  1 aback       joy      
+##  2 abacus      joy      
+##  3 abandon     joy      
+##  4 abandoned   joy      
+##  5 abandonment joy      
+##  6 abate       joy      
+##  7 abatement   joy      
+##  8 abba        joy      
+##  9 abbot       joy      
+## 10 abbreviate  joy      
+## # … with 14,172 more rows</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="sentiment-analysis-with-inner-join.html#cb60-1"></a>tidy_books <span class="op">%&gt;%</span></span>
+<span id="cb60-2"><a href="sentiment-analysis-with-inner-join.html#cb60-2"></a><span class="st">  </span><span class="kw">filter</span>(book <span class="op">==</span><span class="st"> &quot;Emma&quot;</span>)<span class="op">%&gt;%</span></span>
+<span id="cb60-3"><a href="sentiment-analysis-with-inner-join.html#cb60-3"></a><span class="st">  </span><span class="kw">inner_join</span>(nrc_joy) <span class="op">%&gt;%</span></span>
+<span id="cb60-4"><a href="sentiment-analysis-with-inner-join.html#cb60-4"></a><span class="st">  </span><span class="kw">count</span>(words, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;words&quot;</code></pre>
+<pre><code>## # A tibble: 3,504 × 2
+##    words       n
+##    &lt;chr&gt;   &lt;int&gt;
+##  1 miss      599
+##  2 thing     397
+##  3 good      359
+##  4 time      279
+##  5 dear      241
+##  6 thought   226
+##  7 man       218
+##  8 frank     200
+##  9 young     192
+## 10 day       186
+## # … with 3,494 more rows</code></pre>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="meeting-videos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sentiment-analysis-with-tidy-data-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sentimentemotion-lexicons.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="examining-how-sentiment-changes-in-each-novel.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
