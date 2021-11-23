@@ -17,4 +17,5 @@ Imports:
     rmarkdown,
     tidyverse,
     gutenbergr,
-    janeaustenr
+    janeaustenr,
+    widyr

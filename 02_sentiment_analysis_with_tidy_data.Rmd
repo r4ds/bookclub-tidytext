@@ -338,12 +338,6 @@ tidy_books %>%
 
 > These are the chapters with the most sad words in each book, normalized for number of words in the chapter.
 
-
-
-Treat each section like a slide.
-
-
-
 ## Meeting Videos
 
 ### Cohort 1

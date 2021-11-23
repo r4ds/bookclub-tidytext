@@ -5,3 +5,5 @@
 .DS_Store
 _book
 _bookdown_files
+bookclub-tidytext.Rmd
+bookclub-tidytext_files
