@@ -40,7 +40,7 @@ knitr::include_graphics("images/tmwr_0201.png")
     - by the labor of one of the authors.
  
  
-```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r 02-02, message=FALSE, warning=FALSE, paged.print=FALSE}
 library(tidyverse)
 library(tidytext)
 library(janeaustenr)
@@ -48,20 +48,20 @@ library(stringr)
 library(lexicon)
 
 ```
- 
 
-```{r}
+Note: These sentiments aren't shown in the online version of these notes, because they need to be manually downloaded for licensing reasons.
+
+```{r 02-03, eval = FALSE}
 head(get_sentiments("afinn"))
 
 ```
 
-```{r}
+```{r 02-04, eval = FALSE}
 head(get_sentiments("bing"))
-
 ```
 
 
-```{r message=FALSE, warning=FALSE}
+```{r 02-05, message=FALSE, warning=FALSE}
 
 nrc_emotions_lex <- read_tsv("data/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt", col_names = FALSE) 
 
@@ -71,7 +71,7 @@ head(nrc_emotions_lex)
 
 
 
-```{r message=FALSE, warning=FALSE}
+```{r 02-06, message=FALSE, warning=FALSE}
 # get_sentiments("nrc") is not working
 
 nrc_emotions_lex <- read_tsv("data/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt", col_names = FALSE) %>%
@@ -82,10 +82,8 @@ head(nrc_emotions_lex)
 ```
 
 
-```{r}
-
+```{r 02-07}
 head(lexicon::nrc_emotions)
-
 ```
 
 
@@ -99,12 +97,12 @@ head(lexicon::nrc_emotions)
 
 
 
-```{r}
+```{r 02-08}
 austen_books() 
 ```
 
 
-```{r}
+```{r 02-09}
 
 (books <- austen_books() %>%
   group_by(book) %>%
@@ -117,14 +115,14 @@ austen_books()
 ```
 
 
-```{r}
+```{r 02-10}
 (tidy_books <- books %>% 
   unnest_tokens(words, text))
 ```
 
 
 
-```{r message=FALSE, warning=FALSE}
+```{r 02-11, message=FALSE, warning=FALSE}
 # nrc_joy <- get_sentiments("nrc") # does not work
 
 nrc_emotions_lex <- read_tsv("data/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt", col_names = FALSE) %>%
@@ -134,14 +132,14 @@ nrc_emotions_lex <- read_tsv("data/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt", col
 ```
 
 
-```{r}
+```{r 02-12}
 nrc_joy <- nrc_emotions_lex %>% 
   filter(sentiment == "joy")
 
 nrc_joy
 ```
 
-```{r}
+```{r 02-13}
 tidy_books %>%
   filter(book == "Emma")%>%
   inner_join(nrc_joy) %>%
@@ -151,13 +149,13 @@ tidy_books %>%
 ## Examining how sentiment changes in each novel
 
 
-```{r}
+```{r 02-14}
 (tidy_books <- books %>% 
   unnest_tokens(word, text))
 ```
 
 
-```{r}
+```{r 02-15}
 jane_austen_sentiment <- tidy_books %>%
   inner_join(get_sentiments("bing"), by = "word") %>% 
   count(book, index = linenumber %/% 80, sentiment) %>%
@@ -169,7 +167,7 @@ jane_austen_sentiment
 ```
 > Now we can plot these sentiment scores across the plot trajectory of each novel. plotting against the index on the x-axis that keeps track of narrative time in sections of text.
 
-```{r}
+```{r 02-16}
 library(ggplot2)
 
 ggplot(jane_austen_sentiment, aes(index, sentiment, fill = book)) +
@@ -186,7 +184,7 @@ ggplot(jane_austen_sentiment, aes(index, sentiment, fill = book)) +
 
 
 
-```{r}
+```{r 02-17}
 pride_prejudice <- tidy_books %>% 
   filter(book == "Pride & Prejudice")
 pride_prejudice
@@ -194,8 +192,7 @@ pride_prejudice
 
 
 
-```{r}
-
+```{r 02-18, eval = FALSE}
 afinn <- pride_prejudice %>% 
   inner_join(get_sentiments("afinn")) %>% 
   group_by(index = linenumber %/% 80) %>% 
@@ -204,7 +201,7 @@ afinn <- pride_prejudice %>%
 ```
 
 
-```{r}
+```{r 02-19}
 bin_pride_prejudice <-  pride_prejudice %>% 
     inner_join(get_sentiments("bing")) %>%
     mutate(method = "Bing et al.") %>% 
@@ -218,7 +215,7 @@ bin_pride_prejudice <-  pride_prejudice %>%
 
 
 
-```{r}
+```{r 02-20, eval = FALSE}
 bind_rows(afinn, 
           bin_pride_prejudice) %>%
   ggplot(aes(index, sentiment, fill = method)) +
@@ -234,7 +231,7 @@ bind_rows(afinn,
 
 - One advantage of having the data frame with both sentiment and word is that we can analyze word counts that contribute to each sentiment
 
-```{r}
+```{r 02-21, eval = FALSE}
 bing_word_counts <- tidy_books %>%
   inner_join(get_sentiments("bing")) %>%
   count(word, sentiment, sort = TRUE) %>%
@@ -244,7 +241,7 @@ bing_word_counts
 ```
 
 
-```{r}
+```{r 02-22, eval = FALSE}
 bing_word_counts %>%
   group_by(sentiment) %>%
   slice_max(n, n = 10) %>% 
@@ -259,7 +256,7 @@ bing_word_counts %>%
 
 
 
-```{r}
+```{r 02-23}
 custom_stop_words <- bind_rows(tibble(word = c("miss"),  
                                       lexicon = c("custom")), 
                                stop_words)
@@ -269,7 +266,7 @@ custom_stop_words
 ```
 
 
-```{r}
+```{r 02-24, eval = FALSE}
 bing_word_counts %>% 
   anti_join(custom_stop_words, by = "word") %>% 
   group_by(sentiment) %>%
@@ -285,8 +282,7 @@ bing_word_counts %>%
 
 ## Wordclouds
 
-
-```{r message=FALSE, warning=FALSE}
+```{r 02-25, message=FALSE, warning=FALSE}
 library(wordcloud)
 
 tidy_books %>%
@@ -297,7 +293,7 @@ tidy_books %>%
 
 > In other functions, such as comparison.cloud(), you may need to turn the data frame into a matrix with reshape2’s acast()
 
-```{r message=FALSE, warning=FALSE}
+```{r 02-26, message=FALSE, warning=FALSE}
 library(reshape2)
 
 tidy_books %>%
@@ -317,7 +313,7 @@ tidy_books %>%
 - coreNLP (T. Arnold and Tilton 2016), cleanNLP (T. B. Arnold 2016), and sentimentr (Rinker 2017).
 
 
-```{r}
+```{r 02-27}
 bingnegative <- get_sentiments("bing") %>% 
   filter(sentiment == "negative")
 
