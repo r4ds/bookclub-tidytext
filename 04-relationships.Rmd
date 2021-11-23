@@ -11,7 +11,7 @@
 **n-gram: pair of adjacent words. Useful for identifying frequencies in which certain words appear together so that a model of their relationship can be built.**
 
 
-```{r ngrams1, eval=TRUE, message=FALSE, warning=FALSE}
+```{r 04-ngrams1, eval=TRUE, message=FALSE, warning=FALSE}
 library(dplyr)
 library(tidytext)
 library(janeaustenr)
@@ -21,12 +21,11 @@ austen_bigrams <- austen_books() %>%
   unnest_tokens(bigram, text, token = "ngrams", n = 2)
 
 head(austen_bigrams)
-
 ```
 
 OK, how about again with some real data:
 
-```{r ngrams-covid, eval=TRUE}
+```{r 04-ngrams-covid, eval=TRUE}
 # from Kaggle: https://www.kaggle.com/datatattle/covid-19-nlp-text-classification?select=Corona_NLP_train.csv
 covid_tweets <- readr::read_csv("data/Corona_NLP_train.csv")
 
@@ -35,15 +34,13 @@ covid_bigrams <- covid_tweets %>%
   unnest_tokens(bigram, OriginalTweet, token = "ngrams", n = 2)
 
 head(covid_bigrams)
-
 ```
 
 This output clearly needs to be filtered 
 
-```{r covid2, eval=TRUE}
+```{r 04-covid2, eval=TRUE}
 covid_bigrams %>%
   count(bigram, sort = TRUE)
-
 ```
 
 Filter stop-words.
@@ -51,7 +48,7 @@ Filter stop-words.
 
 In order to filter out stop words, we need to separate out the bigrams into separate columns using the `separate()` function from `tidyr`.
 
-```{r covid2a, eval=TRUE, message=FALSE, warning=FALSE}
+```{r 04-covid2a, eval=TRUE, message=FALSE, warning=FALSE}
 library(tidyr)
 
 bigrams_separated <- covid_bigrams %>%
@@ -72,17 +69,16 @@ Clearly there are a lot of people posting links on Twitter (t.co) because of the
 
 Now that we've filtered out the stopwords, let's unite the words to create more true bigrams (no stopwords) again.
 
-```{r covid3, eval=TRUE}
+```{r 04-covid3, eval=TRUE}
 bigrams_united <- bigrams_filtered %>%
   unite(bigram, word1, word2, sep = " ")
 
 bigrams_united
-
 ```
 
 **IF we were interested in trigrams, we can repeat the sequence with n=3**
 
-```{r covid4, eval=TRUE}
+```{r 04-covid4, eval=TRUE}
 covid_tweets %>%
   select(OriginalTweet, Sentiment) %>% 
   unnest_tokens(trigram, OriginalTweet, token = "ngrams", n = 3) %>%
@@ -97,7 +93,7 @@ covid_tweets %>%
 
 This dataset does not really give us a grouping variable like the Austen data but they do include sentiment. Let's try grouping by sentiments the curators have determined the tweets to be to get the which words are most associated with "shopping".
 
-```{r covid5, eval=TRUE}
+```{r 04-covid5, eval=TRUE}
 bigrams_filtered %>%
   filter(word2 == "shopping") %>%
   count(Sentiment, word1, sort = TRUE)
@@ -105,8 +101,7 @@ bigrams_filtered %>%
 
 Bigrams can be used treated like documents. We can look at the tf-idf and visualize based on sentiment.
 
-
-```{r covid6, eval=TRUE}
+```{r 04-covid6, eval=TRUE}
 bigram_tf_idf <- bigrams_united %>%
   count(Sentiment, bigram) %>%
   bind_tf_idf(bigram, Sentiment, n) %>%
@@ -116,7 +111,7 @@ bigram_tf_idf
 ```
 
 **Visualizing tf-idf**
-```{r 01-example1_ggplot, eval=TRUE, message=FALSE, warning=FALSE}
+```{r 04-example1_ggplot, eval=TRUE, message=FALSE, warning=FALSE}
 library(forcats)
 library(ggplot2)
 
@@ -136,15 +131,17 @@ bigram_tf_idf %>%
 
 This dataset already contains sentiment of the overall tweet but as we saw in the tf-idf visual, they don't really make much sense in context of just the bigram. So, let's re-do it. This could make a difference given the context, such as the usage of "not" before "happy". 
 
-```{r covid8, eval=TRUE}
+```{r 04-covid8, eval=TRUE}
 bigrams_separated %>%
   filter(word1 == "not") %>%
   count(word1, word2, sort = TRUE)
 ```
 
-AFINN will be used to assign a numeric value for each word associated with "not"
+AFINN will be used to assign a numeric value for each word associated with "not".
 
-```{r covid9, eval=TRUE}
+Note: You need to run `get_sentiments` interactively (to approve the download) per licensing requirements, so we can't show those results in this online version.
+
+```{r 04-covid9, eval=FALSE}
 AFINN <- get_sentiments("afinn")
 
 # get the most frequent words preceded by "not"
@@ -163,7 +160,7 @@ Computing how influential the certain words were in understanding the context in
 *This is done in the book by multiplying the their frequency by their sentiment value.* 
 
 
-```{r covid10, eval=TRUE}
+```{r 04-covid10, eval=FALSE}
 not_words %>%
   mutate(contribution = n * value) %>%
   arrange(desc(abs(contribution))) %>%
@@ -177,7 +174,7 @@ not_words %>%
 Panic looks *very influential*.
 
 **Let's try again with more negation terms**
-```{r covid11, eval=TRUE}
+```{r 04-covid11, eval=FALSE}
 negation_words <- c("not", "no", "never", "without")
 
 negated_words <- bigrams_separated %>%
@@ -205,7 +202,7 @@ Relationships between words can be visualized using a node graph.
 
 
 
-```{r igraph, eval=FALSE}
+```{r 04-igraph, eval=FALSE}
 library(igraph)
 
 # original counts
@@ -221,7 +218,7 @@ bigram_graph
 
 Now that the igraph object has been created, we must plot it with ggraph!
 
-```{r igraph2, eval=FALSE}
+```{r 04-igraph2, eval=FALSE}
 set.seed(2017)
 
 ggraph(bigram_graph, layout = "fr") +
@@ -234,7 +231,7 @@ This is what it would look like:
 
 ![](img/bigramgraph-1.png)
 
-```{r igraph3, eval=FALSE}
+```{r 04-igraph3, eval=FALSE}
 
 set.seed(2020)
 
@@ -265,7 +262,7 @@ Understanding where words co-occur in documents, even though they may not occur 
 
 For the purposes of our covid example, lets look at only tweets that are "Extremely Positive" and then group them into chunks of 10 tweets. By the way, these tweets span between 03/01/2020 to 04/01/2020. It would have probably been better to convert the `TweetAt` variable into a date and sort so that we can have chunks in chronological order...
 
-```{r widy, eval=TRUE}
+```{r 04-widy, eval=TRUE}
 covid_chunk_words <- covid_tweets %>%
   filter(Sentiment == "Extremely Positive") %>%
   mutate(chunk = row_number() %/% 10) %>%
@@ -274,12 +271,10 @@ covid_chunk_words <- covid_tweets %>%
   filter(!word %in% stop_words$word)
 
 covid_chunk_words
-
-
 ```
 
 
-```{r widy2, eval=TRUE}
+```{r 04-widy2, eval=TRUE}
 library(widyr)
 
 # count words co-occuring within sections
@@ -287,22 +282,18 @@ word_pairs <- covid_chunk_words %>%
   pairwise_count(word, chunk, sort = TRUE)
 
 word_pairs
-
-
 ```
 
 Most common pair of words are links, but outside of those is "covid-19" and "store"
 
-```{r widy3, eval=TRUE}
+```{r 04-widy3, eval=TRUE}
 word_pairs %>%
   filter(item1 == "store")
-
-
 ```
 
 ### Pairwise correlation
 
-```{r cor, eval=TRUE}
+```{r 04-cor, eval=TRUE}
 # we need to filter for at least relatively common words first
 word_cors <- covid_chunk_words %>%
   group_by(word) %>%
@@ -310,19 +301,17 @@ word_cors <- covid_chunk_words %>%
   pairwise_cor(word, chunk, sort = TRUE)
 
 word_cors
-
 ```
 
 Let's find words most correlated to "store"
 
-```{r cor2, eval=TRUE}
+```{r 04-cor2, eval=TRUE}
 word_cors %>%
   filter(item1 == "store")
-
 ```
 
 
-```{r cor3, eval=TRUE}
+```{r 04-cor3, eval=TRUE}
 word_cors %>%
   filter(item1 %in% c("store", "workers", "online", "sanitizer")) %>%
   group_by(item1) %>%
