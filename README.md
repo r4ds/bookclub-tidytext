@@ -14,7 +14,8 @@ If you would like to present, please add your name next to a chapter using the [
 
 - 2021-09-22: Introduction - Shamsuddeen
 - 2021-09-30: Chapter 1: The tidy text format - Kim
-- 2021-10-13: Chapter 3: Relationships between words: n-grams and correlations - Pavitra
+- 2021-10-13: Chapter 3: Analyzing word and document frequency - Pavitra
+- 2021-10-20: Chapter 4: Relationships between words - Justin D.
 
 <hr>
 
