@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.2 The unnest_tokens Function | Text Mining with R Book Club</title>
+  <title>Chapter 2 Sentiment analysis with tidy data | Text Mining with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.2 The unnest_tokens Function | Text Mining with R Book Club" />
+  <meta property="og:title" content="Chapter 2 Sentiment analysis with tidy data | Text Mining with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tidytext" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.2 The unnest_tokens Function | Text Mining with R Book Club" />
+  <meta name="twitter:title" content="Chapter 2 Sentiment analysis with tidy data | Text Mining with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="contrasting-tidy-text-with-other-data-structures.html"/>
-<link rel="next" href="example-1-tidying-the-works-of-jane-austen.html"/>
+<link rel="prev" href="meeting-videos.html"/>
+<link rel="next" href="meeting-videos-1.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -193,75 +193,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="the-unnest_tokens-function" class="section level2">
-<h2><span class="header-section-number">1.2</span> The unnest_tokens Function</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="the-unnest_tokens-function.html#cb1-1"></a>text &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Because I could not stop for Death -&quot;</span>,</span>
-<span id="cb1-2"><a href="the-unnest_tokens-function.html#cb1-2"></a>          <span class="st">&quot;He kindly stopped for me -&quot;</span>, </span>
-<span id="cb1-3"><a href="the-unnest_tokens-function.html#cb1-3"></a>          <span class="st">&quot;The Carriage held but just Ourselves -&quot;</span>,</span>
-<span id="cb1-4"><a href="the-unnest_tokens-function.html#cb1-4"></a>          <span class="st">&quot;and Immotality&quot;</span>)</span>
-<span id="cb1-5"><a href="the-unnest_tokens-function.html#cb1-5"></a>text</span></code></pre></div>
-<pre><code>## [1] &quot;Because I could not stop for Death -&quot;  
-## [2] &quot;He kindly stopped for me -&quot;            
-## [3] &quot;The Carriage held but just Ourselves -&quot;
-## [4] &quot;and Immotality&quot;</code></pre>
-<p>We need to put this into a data frame to convert it into a tidy text dataset.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="the-unnest_tokens-function.html#cb3-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.3.5     ✔ purrr   0.3.4
-## ✔ tibble  3.1.6     ✔ dplyr   1.0.7
-## ✔ tidyr   1.1.4     ✔ stringr 1.4.0
-## ✔ readr   2.1.0     ✔ forcats 0.5.1</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="the-unnest_tokens-function.html#cb7-1"></a>text_df &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">line=</span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">text=</span>text)</span>
-<span id="cb7-2"><a href="the-unnest_tokens-function.html#cb7-2"></a>text_df</span></code></pre></div>
-<pre><code>## # A tibble: 4 × 2
-##    line text                                  
-##   &lt;int&gt; &lt;chr&gt;                                 
-## 1     1 Because I could not stop for Death -  
-## 2     2 He kindly stopped for me -            
-## 3     3 The Carriage held but just Ourselves -
-## 4     4 and Immotality</code></pre>
-<p>Now, we can extract tokens (i.e., words in this example) from the data frame by using the <code>unnest_tokens</code> function.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="the-unnest_tokens-function.html#cb9-1"></a><span class="kw">library</span>(tidytext)</span>
-<span id="cb9-2"><a href="the-unnest_tokens-function.html#cb9-2"></a>text_df <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb9-3"><a href="the-unnest_tokens-function.html#cb9-3"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(word, text)</span></code></pre></div>
-<pre><code>## # A tibble: 20 × 2
-##     line word      
-##    &lt;int&gt; &lt;chr&gt;     
-##  1     1 because   
-##  2     1 i         
-##  3     1 could     
-##  4     1 not       
-##  5     1 stop      
-##  6     1 for       
-##  7     1 death     
-##  8     2 he        
-##  9     2 kindly    
-## 10     2 stopped   
-## 11     2 for       
-## 12     2 me        
-## 13     3 the       
-## 14     3 carriage  
-## 15     3 held      
-## 16     3 but       
-## 17     3 just      
-## 18     3 ourselves 
-## 19     4 and       
-## 20     4 immotality</code></pre>
-<p><strong>unnest_tokens() function</strong>
-- Other columns, such as the line number each word came from are retained.
-- Punctuation has been stripped.
-- By default, <code>unnest_tokens()</code> converts the tokens to lowercase, which makes them easier to compare or combine with other datasets (to_lower=FALSE to turn off this option)</p>
+<div id="sentiment-analysis-with-tidy-data" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Sentiment analysis with tidy data</h1>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="contrasting-tidy-text-with-other-data-structures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="example-1-tidying-the-works-of-jane-austen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="meeting-videos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="meeting-videos-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -292,7 +233,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tidytext/edit/main/01.Rmd",
+"link": "https://github.com/r4ds/bookclub-tidytext/edit/main/02_sentiment_analysis_with_tidy_data.Rmd",
 "text": "Edit"
 },
 "history": {
