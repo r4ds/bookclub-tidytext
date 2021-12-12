@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.6 Most common positive and negative words | Text Mining with R Book Club</title>
+  <title>6.1 Meeting Videos | Text Mining with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.6 Most common positive and negative words | Text Mining with R Book Club" />
+  <meta property="og:title" content="6.1 Meeting Videos | Text Mining with R Book Club" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="r4ds/bookclub-tidytext" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.6 Most common positive and negative words | Text Mining with R Book Club" />
+  <meta name="twitter:title" content="6.1 Meeting Videos | Text Mining with R Book Club" />
   
   <meta name="twitter:description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="comparing-the-three-sentiment-dictionaries.html"/>
-<link rel="next" href="wordclouds.html"/>
+<link rel="prev" href="placeholder-2.html"/>
+<link rel="next" href="placeholder-3.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -231,66 +231,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="most-common-positive-and-negative-words" class="section level2">
-<h2><span class="header-section-number">2.6</span> Most common positive and negative words</h2>
-<ul>
-<li>One advantage of having the data frame with both sentiment and word is that we can analyze word counts that contribute to each sentiment</li>
-</ul>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="most-common-positive-and-negative-words.html#cb74-1"></a>bing_word_counts &lt;-<span class="st"> </span>tidy_books <span class="op">%&gt;%</span></span>
-<span id="cb74-2"><a href="most-common-positive-and-negative-words.html#cb74-2"></a><span class="st">  </span><span class="kw">inner_join</span>(<span class="kw">get_sentiments</span>(<span class="st">&quot;bing&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb74-3"><a href="most-common-positive-and-negative-words.html#cb74-3"></a><span class="st">  </span><span class="kw">count</span>(word, sentiment, <span class="dt">sort =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb74-4"><a href="most-common-positive-and-negative-words.html#cb74-4"></a><span class="st">  </span><span class="kw">ungroup</span>()</span>
-<span id="cb74-5"><a href="most-common-positive-and-negative-words.html#cb74-5"></a></span>
-<span id="cb74-6"><a href="most-common-positive-and-negative-words.html#cb74-6"></a>bing_word_counts</span></code></pre></div>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="most-common-positive-and-negative-words.html#cb75-1"></a>bing_word_counts <span class="op">%&gt;%</span></span>
-<span id="cb75-2"><a href="most-common-positive-and-negative-words.html#cb75-2"></a><span class="st">  </span><span class="kw">group_by</span>(sentiment) <span class="op">%&gt;%</span></span>
-<span id="cb75-3"><a href="most-common-positive-and-negative-words.html#cb75-3"></a><span class="st">  </span><span class="kw">slice_max</span>(n, <span class="dt">n =</span> <span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb75-4"><a href="most-common-positive-and-negative-words.html#cb75-4"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
-<span id="cb75-5"><a href="most-common-positive-and-negative-words.html#cb75-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">word =</span> <span class="kw">reorder</span>(word, n)) <span class="op">%&gt;%</span></span>
-<span id="cb75-6"><a href="most-common-positive-and-negative-words.html#cb75-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(n, word, <span class="dt">fill =</span> sentiment)) <span class="op">+</span></span>
-<span id="cb75-7"><a href="most-common-positive-and-negative-words.html#cb75-7"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb75-8"><a href="most-common-positive-and-negative-words.html#cb75-8"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>sentiment, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="op">+</span></span>
-<span id="cb75-9"><a href="most-common-positive-and-negative-words.html#cb75-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Contribution to sentiment&quot;</span>,</span>
-<span id="cb75-10"><a href="most-common-positive-and-negative-words.html#cb75-10"></a>       <span class="dt">y =</span> <span class="ot">NULL</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="most-common-positive-and-negative-words.html#cb76-1"></a>custom_stop_words &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(<span class="kw">tibble</span>(<span class="dt">word =</span> <span class="kw">c</span>(<span class="st">&quot;miss&quot;</span>),  </span>
-<span id="cb76-2"><a href="most-common-positive-and-negative-words.html#cb76-2"></a>                                      <span class="dt">lexicon =</span> <span class="kw">c</span>(<span class="st">&quot;custom&quot;</span>)), </span>
-<span id="cb76-3"><a href="most-common-positive-and-negative-words.html#cb76-3"></a>                               stop_words)</span>
-<span id="cb76-4"><a href="most-common-positive-and-negative-words.html#cb76-4"></a></span>
-<span id="cb76-5"><a href="most-common-positive-and-negative-words.html#cb76-5"></a></span>
-<span id="cb76-6"><a href="most-common-positive-and-negative-words.html#cb76-6"></a>custom_stop_words</span></code></pre></div>
-<pre><code>## # A tibble: 1,150 × 2
-##    word        lexicon
-##    &lt;chr&gt;       &lt;chr&gt;  
-##  1 miss        custom 
-##  2 a           SMART  
-##  3 a&#39;s         SMART  
-##  4 able        SMART  
-##  5 about       SMART  
-##  6 above       SMART  
-##  7 according   SMART  
-##  8 accordingly SMART  
-##  9 across      SMART  
-## 10 actually    SMART  
-## # … with 1,140 more rows</code></pre>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="most-common-positive-and-negative-words.html#cb78-1"></a>bing_word_counts <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb78-2"><a href="most-common-positive-and-negative-words.html#cb78-2"></a><span class="st">  </span><span class="kw">anti_join</span>(custom_stop_words, <span class="dt">by =</span> <span class="st">&quot;word&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb78-3"><a href="most-common-positive-and-negative-words.html#cb78-3"></a><span class="st">  </span><span class="kw">group_by</span>(sentiment) <span class="op">%&gt;%</span></span>
-<span id="cb78-4"><a href="most-common-positive-and-negative-words.html#cb78-4"></a><span class="st">  </span><span class="kw">slice_max</span>(n, <span class="dt">n =</span> <span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb78-5"><a href="most-common-positive-and-negative-words.html#cb78-5"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
-<span id="cb78-6"><a href="most-common-positive-and-negative-words.html#cb78-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">word =</span> <span class="kw">reorder</span>(word, n)) <span class="op">%&gt;%</span></span>
-<span id="cb78-7"><a href="most-common-positive-and-negative-words.html#cb78-7"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(n, word, <span class="dt">fill =</span> sentiment)) <span class="op">+</span></span>
-<span id="cb78-8"><a href="most-common-positive-and-negative-words.html#cb78-8"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb78-9"><a href="most-common-positive-and-negative-words.html#cb78-9"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>sentiment, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="op">+</span></span>
-<span id="cb78-10"><a href="most-common-positive-and-negative-words.html#cb78-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Contribution to sentiment&quot;</span>,</span>
-<span id="cb78-11"><a href="most-common-positive-and-negative-words.html#cb78-11"></a>       <span class="dt">y =</span> <span class="ot">NULL</span>)</span></code></pre></div>
+<div id="meeting-videos-4" class="section level2">
+<h2><span class="header-section-number">6.1</span> Meeting Videos</h2>
+<div id="cohort-1-4" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Cohort 1</h3>
+<iframe src="https://www.youtube.com/embed/URL" width="100%" height="400px" data-external="1">
+</iframe>
+<details>
+<p><summary> Meeting chat log </summary></p>
+<pre><code>ADD LOG HERE</code></pre>
+</details>
+
 </div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="comparing-the-three-sentiment-dictionaries.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="wordclouds.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="placeholder-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="placeholder-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -321,7 +282,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/r4ds/bookclub-tidytext/edit/main/02_sentiment_analysis_with_tidy_data.Rmd",
+"link": "https://github.com/r4ds/bookclub-tidytext/edit/main/06.Rmd",
 "text": "Edit"
 },
 "history": {
