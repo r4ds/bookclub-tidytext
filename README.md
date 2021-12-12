@@ -10,12 +10,21 @@ As we read, we are producing [notes about the book](https://r4ds.github.io/bookc
 
 If you would like to present, please add your name next to a chapter using the [GitHub Web Editor](https://youtu.be/d41oc2OMAuI)!
 
-*Cohort 1: (started 2021-09-22) - Wednesdays, 4:00pm EST/EDT*
+*Cohort 1: (finished!) - Wednesdays, 4:00pm EST/EDT*
 
+<details>
+  <summary> Past Meetings </summary>
+  
 - 2021-09-22: Introduction - Shamsuddeen
 - 2021-09-30: Chapter 1: The tidy text format - Kim
+- 2021-10-06: Chapter 2: Sentiment analysis with tidy data - Shamsuddeen
 - 2021-10-13: Chapter 3: Analyzing word and document frequency - Pavitra
-- 2021-10-20: Chapter 4: Relationships between words - Justin D.
+- 2021-11-10: Chapter 4: Relationships between words - Justin D.
+- 2021-10-27: Chapter 5: Converting to and from non-tidy formats - Pavitra
+- 2021-11-17: Chapter 6: Topic modeling - Justin D.
+- 2021-12-01: Chapter 7: Case study: comparing Twitter archives - Shamsuddeen
+- 2021-12-08: Chapters 8-9: Case studies - Layla & Justin D.
+</details>
 
 <hr>
 
