@@ -1,17 +1,18 @@
-# Placeholder 
+# Topic modeling 
 
 ## Meeting Videos
 
 ### Cohort 1
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/g4KlSZNofTQ")`
 
 <details>
 <summary> Meeting chat log </summary>
 
 ```
-ADD LOG HERE
+00:23:20	shamsuddeen:	https://proceedings.mlr.press/v108/wang20c.html
+00:23:25	shamsuddeen:	https://proceedings.mlr.press/v108/wang20c.html
+00:30:09	shamsuddeen:	https://github.com/trinker/topicmodels_learning
+00:51:01	shamsuddeen:	https://docs.google.com/spreadsheets/d/1rq8spyG7IbtcX9B340kb6gHbLLz_1AzuWqjEx9Uuy-8/edit#gid=0
 ```
 </details>
-
-

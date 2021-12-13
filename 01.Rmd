@@ -199,13 +199,28 @@ knitr::include_graphics("https://www.tidytextmining.com/images/tmwr_0101.png")
 
 ### Cohort 1
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/RSV0JCuRuAU")`
 
 <details>
 <summary> Meeting chat log </summary>
 
 ```
-ADD LOG HERE
+00:06:01	Ryan Metcalf:	https://github.com/r4ds/bookclub-tidytext
+```
+</details>
+
+`r knitr::include_url("https://www.youtube.com/embed/tPsrc0bmLW8")`
+
+<details>
+<summary> Meeting chat log </summary>
+
+```
+00:15:38	shamsuddeen:	Quanteeda is an excellent package
+00:15:56	shamsuddeen:	They have quarteda tidy also
+00:16:01	Layla Bouzoubaa:	Never tried it!
+00:16:05	Layla Bouzoubaa:	nice
+00:16:32	shamsuddeen:	So good Layla
+00:16:36	shamsuddeen:	Check it out
 ```
 </details>
 

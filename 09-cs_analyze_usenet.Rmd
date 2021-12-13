@@ -245,3 +245,9 @@ What about the most negative?
 print_message("rec.sport.hockey", 53907)
 ```
 
+
+## Meeting Videos
+
+### Cohort 1
+
+`r knitr::include_url("https://www.youtube.com/embed/Stp-UpgdQTE")`

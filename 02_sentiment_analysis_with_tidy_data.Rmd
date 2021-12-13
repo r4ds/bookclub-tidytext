@@ -338,14 +338,21 @@ tidy_books %>%
 
 ### Cohort 1
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
+`r knitr::include_url("https://www.youtube.com/embed/VR0OmBFOgfU")`
 
 <details>
 <summary> Meeting chat log </summary>
 
 ```
-ADD LOG HERE
+00:15:38	Layla Bouzoubaa:	See this issue from January https://github.com/juliasilge/tidytext/issues/189
+00:16:04	Keuntae Kim:	Thank you for sharing!
+00:16:33	Layla Bouzoubaa:	yw
+00:19:54	Keuntae Kim:	https://cran.r-project.org/web/packages/textdata/index.html <- textdata package for nrc and afinn
+00:37:09	Layla Bouzoubaa:	Polarity package?
+00:41:17	Keuntae Kim:	https://cran.r-project.org/web/packages/sentimentr/readme/README.html
+00:41:37	Layla Bouzoubaa:	But can be done in R as well!!
+00:41:41	Layla Bouzoubaa:	Reticulate to the rescue!
+00:41:47	Keuntae Kim:	polarity also conduct the sentiment analysis, but sentimentr package does what I just showed you.
+00:41:58	Layla Bouzoubaa:	That’s cool!
 ```
 </details>
-
-

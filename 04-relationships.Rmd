@@ -324,3 +324,9 @@ word_cors %>%
   coord_flip()
 ```
 
+
+## Meeting Videos
+
+### Cohort 1
+
+`r knitr::include_url("https://www.youtube.com/embed/_-IIa879XrM")`
