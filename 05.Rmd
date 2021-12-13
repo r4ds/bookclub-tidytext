@@ -1,17 +1,7 @@
-# Placeholder 
+# Converting to and from non-tidy formats 
 
 ## Meeting Videos
 
 ### Cohort 1
 
-`r knitr::include_url("https://www.youtube.com/embed/URL")`
-
-<details>
-<summary> Meeting chat log </summary>
-
-```
-ADD LOG HERE
-```
-</details>
-
-
+`r knitr::include_url("https://www.youtube.com/embed/Rf-NBtAkKP0")`
