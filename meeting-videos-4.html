@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.1 Meeting Videos | Text Mining with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.1 Meeting Videos | Text Mining with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tidytext" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-12-13" />
+<meta name="date" content="2022-05-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,24 +49,24 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +86,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -137,22 +136,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Text Mining with R Book Club</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
 <li class="chapter" data-level="" data-path="book-club-meetings.html"><a href="book-club-meetings.html"><i class="fa fa-check"></i>Book club meetings</a></li>
 <li class="chapter" data-level="" data-path="pace.html"><a href="pace.html"><i class="fa fa-check"></i>Pace</a></li>
 <li class="chapter" data-level="" data-path="book-chapters.html"><a href="book-chapters.html"><i class="fa fa-check"></i>Book Chapters</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="the-tidy-text-format.html"><a href="the-tidy-text-format.html"><i class="fa fa-check"></i><b>1</b> The Tidy Text Format</a><ul>
+<li class="chapter" data-level="1" data-path="the-tidy-text-format.html"><a href="the-tidy-text-format.html"><i class="fa fa-check"></i><b>1</b> The Tidy Text Format</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="contrasting-tidy-text-with-other-data-structures.html"><a href="contrasting-tidy-text-with-other-data-structures.html"><i class="fa fa-check"></i><b>1.1</b> Contrasting Tidy Text with Other Data Structures</a></li>
 <li class="chapter" data-level="1.2" data-path="the-unnest_tokens-function.html"><a href="the-unnest_tokens-function.html"><i class="fa fa-check"></i><b>1.2</b> The unnest_tokens Function</a></li>
 <li class="chapter" data-level="1.3" data-path="example-1-tidying-the-works-of-jane-austen.html"><a href="example-1-tidying-the-works-of-jane-austen.html"><i class="fa fa-check"></i><b>1.3</b> Example 1: Tidying the works of Jane Austen</a></li>
 <li class="chapter" data-level="1.4" data-path="example-2-the-gutenbergr-package.html"><a href="example-2-the-gutenbergr-package.html"><i class="fa fa-check"></i><b>1.4</b> Example 2: The <code>gutenbergr</code> package</a></li>
 <li class="chapter" data-level="1.5" data-path="a-flowchart-of-a-typical-text-analysis-using-tidy-data-priciples..html"><a href="a-flowchart-of-a-typical-text-analysis-using-tidy-data-priciples..html"><i class="fa fa-check"></i><b>1.5</b> A flowchart of a typical text analysis using tidy data priciples.</a></li>
-<li class="chapter" data-level="1.6" data-path="meeting-videos.html"><a href="meeting-videos.html"><i class="fa fa-check"></i><b>1.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="1.6" data-path="meeting-videos.html"><a href="meeting-videos.html"><i class="fa fa-check"></i><b>1.6</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="1.6.1" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-1"><i class="fa fa-check"></i><b>1.6.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="sentiment-analysis-with-tidy-data.html"><a href="sentiment-analysis-with-tidy-data.html"><i class="fa fa-check"></i><b>2</b> Sentiment analysis with tidy data</a><ul>
+<li class="chapter" data-level="2" data-path="sentiment-analysis-with-tidy-data.html"><a href="sentiment-analysis-with-tidy-data.html"><i class="fa fa-check"></i><b>2</b> Sentiment analysis with tidy data</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="sentiment-analysis-with-tidy-data-1.html"><a href="sentiment-analysis-with-tidy-data-1.html"><i class="fa fa-check"></i><b>2.1</b> Sentiment analysis with tidy data</a></li>
 <li class="chapter" data-level="2.2" data-path="sentimentemotion-lexicons.html"><a href="sentimentemotion-lexicons.html"><i class="fa fa-check"></i><b>2.2</b> Sentiment/emotion Lexicons</a></li>
 <li class="chapter" data-level="2.3" data-path="sentiment-analysis-with-inner-join.html"><a href="sentiment-analysis-with-inner-join.html"><i class="fa fa-check"></i><b>2.3</b> Sentiment analysis with inner join</a></li>
@@ -161,59 +164,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6" data-path="most-common-positive-and-negative-words.html"><a href="most-common-positive-and-negative-words.html"><i class="fa fa-check"></i><b>2.6</b> Most common positive and negative words</a></li>
 <li class="chapter" data-level="2.7" data-path="wordclouds.html"><a href="wordclouds.html"><i class="fa fa-check"></i><b>2.7</b> Wordclouds</a></li>
 <li class="chapter" data-level="2.8" data-path="looking-at-units-beyond-just-words.html"><a href="looking-at-units-beyond-just-words.html"><i class="fa fa-check"></i><b>2.8</b> Looking at units beyond just words</a></li>
-<li class="chapter" data-level="2.9" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.9</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="2.9" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.9</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="2.9.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-1-1"><i class="fa fa-check"></i><b>2.9.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="analyzing-word-and-document-frequency-tf-idf.html"><a href="analyzing-word-and-document-frequency-tf-idf.html"><i class="fa fa-check"></i><b>3</b> Analyzing word and document frequency: tf-idf</a><ul>
-<li class="chapter" data-level="3.1" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html"><i class="fa fa-check"></i><b>3.1</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="3" data-path="analyzing-word-and-document-frequency-tf-idf.html"><a href="analyzing-word-and-document-frequency-tf-idf.html"><i class="fa fa-check"></i><b>3</b> Analyzing word and document frequency: tf-idf</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html"><i class="fa fa-check"></i><b>3.1</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html#cohort-1-2"><i class="fa fa-check"></i><b>3.1.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="relationships-between-words-n-grams-correlations.html"><a href="relationships-between-words-n-grams-correlations.html"><i class="fa fa-check"></i><b>4</b> Relationships between words: n-grams &amp; correlations</a><ul>
+<li class="chapter" data-level="4" data-path="relationships-between-words-n-grams-correlations.html"><a href="relationships-between-words-n-grams-correlations.html"><i class="fa fa-check"></i><b>4</b> Relationships between words: n-grams &amp; correlations</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="objectives.html"><a href="objectives.html"><i class="fa fa-check"></i><b>4.1</b> Objectives:</a></li>
-<li class="chapter" data-level="4.2" data-path="tokeninzing-by-n-grams.html"><a href="tokeninzing-by-n-grams.html"><i class="fa fa-check"></i><b>4.2</b> Tokeninzing by n-grams</a><ul>
+<li class="chapter" data-level="4.2" data-path="tokeninzing-by-n-grams.html"><a href="tokeninzing-by-n-grams.html"><i class="fa fa-check"></i><b>4.2</b> Tokeninzing by n-grams</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="tokeninzing-by-n-grams.html"><a href="tokeninzing-by-n-grams.html#analyzing-bigrams"><i class="fa fa-check"></i><b>4.2.1</b> Analyzing bigrams</a></li>
 <li class="chapter" data-level="4.2.2" data-path="tokeninzing-by-n-grams.html"><a href="tokeninzing-by-n-grams.html#using-bigrams-to-provide-context-in-sentiment-analysis"><i class="fa fa-check"></i><b>4.2.2</b> Using bigrams to provide context in sentiment analysis</a></li>
 <li class="chapter" data-level="4.2.3" data-path="tokeninzing-by-n-grams.html"><a href="tokeninzing-by-n-grams.html#visualizing-network-of-bigrams-with-ggraph"><i class="fa fa-check"></i><b>4.2.3</b> Visualizing network of bigrams with ggraph</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="counting-and-correlating-pairs-of-words-with-widyr.html"><a href="counting-and-correlating-pairs-of-words-with-widyr.html"><i class="fa fa-check"></i><b>4.3</b> Counting and correlating pairs of words with <code>widyr</code></a><ul>
+<li class="chapter" data-level="4.3" data-path="counting-and-correlating-pairs-of-words-with-widyr.html"><a href="counting-and-correlating-pairs-of-words-with-widyr.html"><i class="fa fa-check"></i><b>4.3</b> Counting and correlating pairs of words with <code>widyr</code></a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="counting-and-correlating-pairs-of-words-with-widyr.html"><a href="counting-and-correlating-pairs-of-words-with-widyr.html#pairwise-correlation"><i class="fa fa-check"></i><b>4.3.1</b> Pairwise correlation</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.4</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="4.4" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.4</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-1-3"><i class="fa fa-check"></i><b>4.4.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="converting-to-and-from-non-tidy-formats.html"><a href="converting-to-and-from-non-tidy-formats.html"><i class="fa fa-check"></i><b>5</b> Converting to and from non-tidy formats</a><ul>
-<li class="chapter" data-level="5.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.1</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="5" data-path="converting-to-and-from-non-tidy-formats.html"><a href="converting-to-and-from-non-tidy-formats.html"><i class="fa fa-check"></i><b>5</b> Converting to and from non-tidy formats</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.1</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-1-4"><i class="fa fa-check"></i><b>5.1.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="topic-modeling.html"><a href="topic-modeling.html"><i class="fa fa-check"></i><b>6</b> Topic modeling</a><ul>
-<li class="chapter" data-level="6.1" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html"><i class="fa fa-check"></i><b>6.1</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="6" data-path="topic-modeling.html"><a href="topic-modeling.html"><i class="fa fa-check"></i><b>6</b> Topic modeling</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html"><i class="fa fa-check"></i><b>6.1</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html#cohort-1-5"><i class="fa fa-check"></i><b>6.1.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="case-study-comparing-twitter-archives.html"><a href="case-study-comparing-twitter-archives.html"><i class="fa fa-check"></i><b>7</b> Case study: comparing Twitter archives</a><ul>
-<li class="chapter" data-level="7.1" data-path="meeting-videos-6.html"><a href="meeting-videos-6.html"><i class="fa fa-check"></i><b>7.1</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="7" data-path="case-study-comparing-twitter-archives.html"><a href="case-study-comparing-twitter-archives.html"><i class="fa fa-check"></i><b>7</b> Case study: comparing Twitter archives</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="meeting-videos-6.html"><a href="meeting-videos-6.html"><i class="fa fa-check"></i><b>7.1</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="meeting-videos-6.html"><a href="meeting-videos-6.html#cohort-1-6"><i class="fa fa-check"></i><b>7.1.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="case-study-mining-nasa-metadata.html"><a href="case-study-mining-nasa-metadata.html"><i class="fa fa-check"></i><b>8</b> Case study: mining NASA metadata</a><ul>
-<li class="chapter" data-level="8.1" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html"><i class="fa fa-check"></i><b>8.1</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="8" data-path="case-study-mining-nasa-metadata.html"><a href="case-study-mining-nasa-metadata.html"><i class="fa fa-check"></i><b>8</b> Case study: mining NASA metadata</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html"><i class="fa fa-check"></i><b>8.1</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="8.1.1" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html#cohort-1-7"><i class="fa fa-check"></i><b>8.1.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="case-study-analyzing-usenet-text.html"><a href="case-study-analyzing-usenet-text.html"><i class="fa fa-check"></i><b>9</b> Case Study: Analyzing usenet Text</a><ul>
+<li class="chapter" data-level="9" data-path="case-study-analyzing-usenet-text.html"><a href="case-study-analyzing-usenet-text.html"><i class="fa fa-check"></i><b>9</b> Case Study: Analyzing usenet Text</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="objectives-1.html"><a href="objectives-1.html"><i class="fa fa-check"></i><b>9.1</b> Objectives</a></li>
-<li class="chapter" data-level="9.2" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>9.2</b> 9.1 Pre-processing</a><ul>
+<li class="chapter" data-level="9.2" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>9.2</b> 9.1 Pre-processing</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="pre-processing.html"><a href="pre-processing.html#pre-processing-text"><i class="fa fa-check"></i><b>9.2.1</b> Pre-processing text</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="words-in-newsgroups.html"><a href="words-in-newsgroups.html"><i class="fa fa-check"></i><b>9.3</b> 9.2 Words in newsgroups</a></li>
-<li class="chapter" data-level="9.4" data-path="sentiment-analysis.html"><a href="sentiment-analysis.html"><i class="fa fa-check"></i><b>9.4</b> 9.3 Sentiment Analysis</a><ul>
+<li class="chapter" data-level="9.4" data-path="sentiment-analysis.html"><a href="sentiment-analysis.html"><i class="fa fa-check"></i><b>9.4</b> 9.3 Sentiment Analysis</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="sentiment-analysis.html"><a href="sentiment-analysis.html#question-2"><i class="fa fa-check"></i><b>9.4.1</b> Question 2:</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>9.5</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="9.5" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>9.5</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-8"><i class="fa fa-check"></i><b>9.5.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
@@ -237,10 +259,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="meeting-videos-4" class="section level2">
-<h2><span class="header-section-number">5.1</span> Meeting Videos</h2>
-<div id="cohort-1-4" class="section level3">
-<h3><span class="header-section-number">5.1.1</span> Cohort 1</h3>
+<div id="meeting-videos-4" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Meeting Videos<a href="meeting-videos-4.html#meeting-videos-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="cohort-1-4" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Cohort 1<a href="meeting-videos-4.html#cohort-1-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <iframe src="https://www.youtube.com/embed/Rf-NBtAkKP0" width="100%" height="400px" data-external="1">
 </iframe>
 

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.3 Sentiment analysis with inner join | Text Mining with R Book Club</title>
   <meta name="description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.3 Sentiment analysis with inner join | Text Mining with R Book Club" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the product of the R4DS Online Learning Community’s Text Mining with R Book Club." />
   <meta name="github-repo" content="r4ds/bookclub-tidytext" />
@@ -24,7 +23,7 @@
 <meta name="author" content="The R4DS Online Learning Community" />
 
 
-<meta name="date" content="2021-12-13" />
+<meta name="date" content="2022-05-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,24 +49,24 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +86,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -137,22 +136,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Text Mining with R Book Club</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
 <li class="chapter" data-level="" data-path="book-club-meetings.html"><a href="book-club-meetings.html"><i class="fa fa-check"></i>Book club meetings</a></li>
 <li class="chapter" data-level="" data-path="pace.html"><a href="pace.html"><i class="fa fa-check"></i>Pace</a></li>
 <li class="chapter" data-level="" data-path="book-chapters.html"><a href="book-chapters.html"><i class="fa fa-check"></i>Book Chapters</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="the-tidy-text-format.html"><a href="the-tidy-text-format.html"><i class="fa fa-check"></i><b>1</b> The Tidy Text Format</a><ul>
+<li class="chapter" data-level="1" data-path="the-tidy-text-format.html"><a href="the-tidy-text-format.html"><i class="fa fa-check"></i><b>1</b> The Tidy Text Format</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="contrasting-tidy-text-with-other-data-structures.html"><a href="contrasting-tidy-text-with-other-data-structures.html"><i class="fa fa-check"></i><b>1.1</b> Contrasting Tidy Text with Other Data Structures</a></li>
 <li class="chapter" data-level="1.2" data-path="the-unnest_tokens-function.html"><a href="the-unnest_tokens-function.html"><i class="fa fa-check"></i><b>1.2</b> The unnest_tokens Function</a></li>
 <li class="chapter" data-level="1.3" data-path="example-1-tidying-the-works-of-jane-austen.html"><a href="example-1-tidying-the-works-of-jane-austen.html"><i class="fa fa-check"></i><b>1.3</b> Example 1: Tidying the works of Jane Austen</a></li>
 <li class="chapter" data-level="1.4" data-path="example-2-the-gutenbergr-package.html"><a href="example-2-the-gutenbergr-package.html"><i class="fa fa-check"></i><b>1.4</b> Example 2: The <code>gutenbergr</code> package</a></li>
 <li class="chapter" data-level="1.5" data-path="a-flowchart-of-a-typical-text-analysis-using-tidy-data-priciples..html"><a href="a-flowchart-of-a-typical-text-analysis-using-tidy-data-priciples..html"><i class="fa fa-check"></i><b>1.5</b> A flowchart of a typical text analysis using tidy data priciples.</a></li>
-<li class="chapter" data-level="1.6" data-path="meeting-videos.html"><a href="meeting-videos.html"><i class="fa fa-check"></i><b>1.6</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="1.6" data-path="meeting-videos.html"><a href="meeting-videos.html"><i class="fa fa-check"></i><b>1.6</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="1.6.1" data-path="meeting-videos.html"><a href="meeting-videos.html#cohort-1"><i class="fa fa-check"></i><b>1.6.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="sentiment-analysis-with-tidy-data.html"><a href="sentiment-analysis-with-tidy-data.html"><i class="fa fa-check"></i><b>2</b> Sentiment analysis with tidy data</a><ul>
+<li class="chapter" data-level="2" data-path="sentiment-analysis-with-tidy-data.html"><a href="sentiment-analysis-with-tidy-data.html"><i class="fa fa-check"></i><b>2</b> Sentiment analysis with tidy data</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="sentiment-analysis-with-tidy-data-1.html"><a href="sentiment-analysis-with-tidy-data-1.html"><i class="fa fa-check"></i><b>2.1</b> Sentiment analysis with tidy data</a></li>
 <li class="chapter" data-level="2.2" data-path="sentimentemotion-lexicons.html"><a href="sentimentemotion-lexicons.html"><i class="fa fa-check"></i><b>2.2</b> Sentiment/emotion Lexicons</a></li>
 <li class="chapter" data-level="2.3" data-path="sentiment-analysis-with-inner-join.html"><a href="sentiment-analysis-with-inner-join.html"><i class="fa fa-check"></i><b>2.3</b> Sentiment analysis with inner join</a></li>
@@ -161,59 +164,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6" data-path="most-common-positive-and-negative-words.html"><a href="most-common-positive-and-negative-words.html"><i class="fa fa-check"></i><b>2.6</b> Most common positive and negative words</a></li>
 <li class="chapter" data-level="2.7" data-path="wordclouds.html"><a href="wordclouds.html"><i class="fa fa-check"></i><b>2.7</b> Wordclouds</a></li>
 <li class="chapter" data-level="2.8" data-path="looking-at-units-beyond-just-words.html"><a href="looking-at-units-beyond-just-words.html"><i class="fa fa-check"></i><b>2.8</b> Looking at units beyond just words</a></li>
-<li class="chapter" data-level="2.9" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.9</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="2.9" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html"><i class="fa fa-check"></i><b>2.9</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="2.9.1" data-path="meeting-videos-1.html"><a href="meeting-videos-1.html#cohort-1-1"><i class="fa fa-check"></i><b>2.9.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="analyzing-word-and-document-frequency-tf-idf.html"><a href="analyzing-word-and-document-frequency-tf-idf.html"><i class="fa fa-check"></i><b>3</b> Analyzing word and document frequency: tf-idf</a><ul>
-<li class="chapter" data-level="3.1" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html"><i class="fa fa-check"></i><b>3.1</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="3" data-path="analyzing-word-and-document-frequency-tf-idf.html"><a href="analyzing-word-and-document-frequency-tf-idf.html"><i class="fa fa-check"></i><b>3</b> Analyzing word and document frequency: tf-idf</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html"><i class="fa fa-check"></i><b>3.1</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="meeting-videos-2.html"><a href="meeting-videos-2.html#cohort-1-2"><i class="fa fa-check"></i><b>3.1.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="relationships-between-words-n-grams-correlations.html"><a href="relationships-between-words-n-grams-correlations.html"><i class="fa fa-check"></i><b>4</b> Relationships between words: n-grams &amp; correlations</a><ul>
+<li class="chapter" data-level="4" data-path="relationships-between-words-n-grams-correlations.html"><a href="relationships-between-words-n-grams-correlations.html"><i class="fa fa-check"></i><b>4</b> Relationships between words: n-grams &amp; correlations</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="objectives.html"><a href="objectives.html"><i class="fa fa-check"></i><b>4.1</b> Objectives:</a></li>
-<li class="chapter" data-level="4.2" data-path="tokeninzing-by-n-grams.html"><a href="tokeninzing-by-n-grams.html"><i class="fa fa-check"></i><b>4.2</b> Tokeninzing by n-grams</a><ul>
+<li class="chapter" data-level="4.2" data-path="tokeninzing-by-n-grams.html"><a href="tokeninzing-by-n-grams.html"><i class="fa fa-check"></i><b>4.2</b> Tokeninzing by n-grams</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="tokeninzing-by-n-grams.html"><a href="tokeninzing-by-n-grams.html#analyzing-bigrams"><i class="fa fa-check"></i><b>4.2.1</b> Analyzing bigrams</a></li>
 <li class="chapter" data-level="4.2.2" data-path="tokeninzing-by-n-grams.html"><a href="tokeninzing-by-n-grams.html#using-bigrams-to-provide-context-in-sentiment-analysis"><i class="fa fa-check"></i><b>4.2.2</b> Using bigrams to provide context in sentiment analysis</a></li>
 <li class="chapter" data-level="4.2.3" data-path="tokeninzing-by-n-grams.html"><a href="tokeninzing-by-n-grams.html#visualizing-network-of-bigrams-with-ggraph"><i class="fa fa-check"></i><b>4.2.3</b> Visualizing network of bigrams with ggraph</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="counting-and-correlating-pairs-of-words-with-widyr.html"><a href="counting-and-correlating-pairs-of-words-with-widyr.html"><i class="fa fa-check"></i><b>4.3</b> Counting and correlating pairs of words with <code>widyr</code></a><ul>
+<li class="chapter" data-level="4.3" data-path="counting-and-correlating-pairs-of-words-with-widyr.html"><a href="counting-and-correlating-pairs-of-words-with-widyr.html"><i class="fa fa-check"></i><b>4.3</b> Counting and correlating pairs of words with <code>widyr</code></a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="counting-and-correlating-pairs-of-words-with-widyr.html"><a href="counting-and-correlating-pairs-of-words-with-widyr.html#pairwise-correlation"><i class="fa fa-check"></i><b>4.3.1</b> Pairwise correlation</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.4</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="4.4" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html"><i class="fa fa-check"></i><b>4.4</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="meeting-videos-3.html"><a href="meeting-videos-3.html#cohort-1-3"><i class="fa fa-check"></i><b>4.4.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="converting-to-and-from-non-tidy-formats.html"><a href="converting-to-and-from-non-tidy-formats.html"><i class="fa fa-check"></i><b>5</b> Converting to and from non-tidy formats</a><ul>
-<li class="chapter" data-level="5.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.1</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="5" data-path="converting-to-and-from-non-tidy-formats.html"><a href="converting-to-and-from-non-tidy-formats.html"><i class="fa fa-check"></i><b>5</b> Converting to and from non-tidy formats</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html"><i class="fa fa-check"></i><b>5.1</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="meeting-videos-4.html"><a href="meeting-videos-4.html#cohort-1-4"><i class="fa fa-check"></i><b>5.1.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="topic-modeling.html"><a href="topic-modeling.html"><i class="fa fa-check"></i><b>6</b> Topic modeling</a><ul>
-<li class="chapter" data-level="6.1" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html"><i class="fa fa-check"></i><b>6.1</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="6" data-path="topic-modeling.html"><a href="topic-modeling.html"><i class="fa fa-check"></i><b>6</b> Topic modeling</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html"><i class="fa fa-check"></i><b>6.1</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="meeting-videos-5.html"><a href="meeting-videos-5.html#cohort-1-5"><i class="fa fa-check"></i><b>6.1.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="case-study-comparing-twitter-archives.html"><a href="case-study-comparing-twitter-archives.html"><i class="fa fa-check"></i><b>7</b> Case study: comparing Twitter archives</a><ul>
-<li class="chapter" data-level="7.1" data-path="meeting-videos-6.html"><a href="meeting-videos-6.html"><i class="fa fa-check"></i><b>7.1</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="7" data-path="case-study-comparing-twitter-archives.html"><a href="case-study-comparing-twitter-archives.html"><i class="fa fa-check"></i><b>7</b> Case study: comparing Twitter archives</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="meeting-videos-6.html"><a href="meeting-videos-6.html"><i class="fa fa-check"></i><b>7.1</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="meeting-videos-6.html"><a href="meeting-videos-6.html#cohort-1-6"><i class="fa fa-check"></i><b>7.1.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="case-study-mining-nasa-metadata.html"><a href="case-study-mining-nasa-metadata.html"><i class="fa fa-check"></i><b>8</b> Case study: mining NASA metadata</a><ul>
-<li class="chapter" data-level="8.1" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html"><i class="fa fa-check"></i><b>8.1</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="8" data-path="case-study-mining-nasa-metadata.html"><a href="case-study-mining-nasa-metadata.html"><i class="fa fa-check"></i><b>8</b> Case study: mining NASA metadata</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html"><i class="fa fa-check"></i><b>8.1</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="8.1.1" data-path="meeting-videos-7.html"><a href="meeting-videos-7.html#cohort-1-7"><i class="fa fa-check"></i><b>8.1.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="case-study-analyzing-usenet-text.html"><a href="case-study-analyzing-usenet-text.html"><i class="fa fa-check"></i><b>9</b> Case Study: Analyzing usenet Text</a><ul>
+<li class="chapter" data-level="9" data-path="case-study-analyzing-usenet-text.html"><a href="case-study-analyzing-usenet-text.html"><i class="fa fa-check"></i><b>9</b> Case Study: Analyzing usenet Text</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="objectives-1.html"><a href="objectives-1.html"><i class="fa fa-check"></i><b>9.1</b> Objectives</a></li>
-<li class="chapter" data-level="9.2" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>9.2</b> 9.1 Pre-processing</a><ul>
+<li class="chapter" data-level="9.2" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>9.2</b> 9.1 Pre-processing</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="pre-processing.html"><a href="pre-processing.html#pre-processing-text"><i class="fa fa-check"></i><b>9.2.1</b> Pre-processing text</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="words-in-newsgroups.html"><a href="words-in-newsgroups.html"><i class="fa fa-check"></i><b>9.3</b> 9.2 Words in newsgroups</a></li>
-<li class="chapter" data-level="9.4" data-path="sentiment-analysis.html"><a href="sentiment-analysis.html"><i class="fa fa-check"></i><b>9.4</b> 9.3 Sentiment Analysis</a><ul>
+<li class="chapter" data-level="9.4" data-path="sentiment-analysis.html"><a href="sentiment-analysis.html"><i class="fa fa-check"></i><b>9.4</b> 9.3 Sentiment Analysis</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="sentiment-analysis.html"><a href="sentiment-analysis.html#question-2"><i class="fa fa-check"></i><b>9.4.1</b> Question 2:</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>9.5</b> Meeting Videos</a><ul>
+<li class="chapter" data-level="9.5" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html"><i class="fa fa-check"></i><b>9.5</b> Meeting Videos</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="meeting-videos-8.html"><a href="meeting-videos-8.html#cohort-1-8"><i class="fa fa-check"></i><b>9.5.1</b> Cohort 1</a></li>
 </ul></li>
 </ul></li>
@@ -237,13 +259,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sentiment-analysis-with-inner-join" class="section level2">
-<h2><span class="header-section-number">2.3</span> Sentiment analysis with inner join</h2>
+<div id="sentiment-analysis-with-inner-join" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Sentiment analysis with inner join<a href="sentiment-analysis-with-inner-join.html#sentiment-analysis-with-inner-join" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>With data in a tidy format, sentiment analysis can be done as an <strong>inner join</strong>.</p></li>
 <li><p>text mining as a tidy data analysis task; much as removing stop words is an <strong>antijoin</strong> operation, performing sentiment analysis is an <strong>inner join</strong> operation.</p></li>
 </ul>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="sentiment-analysis-with-inner-join.html#cb52-1"></a><span class="kw">austen_books</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="sentiment-analysis-with-inner-join.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">austen_books</span>() </span></code></pre></div>
 <pre><code>## # A tibble: 73,422 × 2
 ##    text                    book               
 ##  * &lt;chr&gt;                   &lt;fct&gt;              
@@ -258,12 +280,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 &quot;&quot;                      Sense &amp; Sensibility
 ## 10 &quot;CHAPTER 1&quot;             Sense &amp; Sensibility
 ## # … with 73,412 more rows</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="sentiment-analysis-with-inner-join.html#cb54-1"></a>(books &lt;-<span class="st"> </span><span class="kw">austen_books</span>() <span class="op">%&gt;%</span></span>
-<span id="cb54-2"><a href="sentiment-analysis-with-inner-join.html#cb54-2"></a><span class="st">  </span><span class="kw">group_by</span>(book) <span class="op">%&gt;%</span></span>
-<span id="cb54-3"><a href="sentiment-analysis-with-inner-join.html#cb54-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">linenumber =</span> <span class="kw">row_number</span>(),</span>
-<span id="cb54-4"><a href="sentiment-analysis-with-inner-join.html#cb54-4"></a>         <span class="dt">chapter =</span> <span class="kw">cumsum</span>(<span class="kw">str_detect</span>(text, <span class="kw">regex</span>(<span class="st">&quot;^chapter [</span><span class="ch">\\</span><span class="st">divxlc]&quot;</span>, </span>
-<span id="cb54-5"><a href="sentiment-analysis-with-inner-join.html#cb54-5"></a>                                      <span class="dt">ignore_case =</span> <span class="ot">TRUE</span>)))) <span class="op">%&gt;%</span></span>
-<span id="cb54-6"><a href="sentiment-analysis-with-inner-join.html#cb54-6"></a><span class="st">                                      </span><span class="kw">ungroup</span>() )</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="sentiment-analysis-with-inner-join.html#cb54-1" aria-hidden="true" tabindex="-1"></a>(books <span class="ot">&lt;-</span> <span class="fu">austen_books</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb54-2"><a href="sentiment-analysis-with-inner-join.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(book) <span class="sc">%&gt;%</span></span>
+<span id="cb54-3"><a href="sentiment-analysis-with-inner-join.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">linenumber =</span> <span class="fu">row_number</span>(),</span>
+<span id="cb54-4"><a href="sentiment-analysis-with-inner-join.html#cb54-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">chapter =</span> <span class="fu">cumsum</span>(<span class="fu">str_detect</span>(text, <span class="fu">regex</span>(<span class="st">&quot;^chapter [</span><span class="sc">\\</span><span class="st">divxlc]&quot;</span>, </span>
+<span id="cb54-5"><a href="sentiment-analysis-with-inner-join.html#cb54-5" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">ignore_case =</span> <span class="cn">TRUE</span>)))) <span class="sc">%&gt;%</span></span>
+<span id="cb54-6"><a href="sentiment-analysis-with-inner-join.html#cb54-6" aria-hidden="true" tabindex="-1"></a>                                      <span class="fu">ungroup</span>() )</span></code></pre></div>
 <pre><code>## # A tibble: 73,422 × 4
 ##    text                    book                linenumber chapter
 ##    &lt;chr&gt;                   &lt;fct&gt;                    &lt;int&gt;   &lt;int&gt;
@@ -278,8 +300,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 &quot;&quot;                      Sense &amp; Sensibility          9       0
 ## 10 &quot;CHAPTER 1&quot;             Sense &amp; Sensibility         10       1
 ## # … with 73,412 more rows</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="sentiment-analysis-with-inner-join.html#cb56-1"></a>(tidy_books &lt;-<span class="st"> </span>books <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb56-2"><a href="sentiment-analysis-with-inner-join.html#cb56-2"></a><span class="st">  </span><span class="kw">unnest_tokens</span>(words, text))</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="sentiment-analysis-with-inner-join.html#cb56-1" aria-hidden="true" tabindex="-1"></a>(tidy_books <span class="ot">&lt;-</span> books <span class="sc">%&gt;%</span> </span>
+<span id="cb56-2"><a href="sentiment-analysis-with-inner-join.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(words, text))</span></code></pre></div>
 <pre><code>## # A tibble: 725,055 × 4
 ##    book                linenumber chapter words      
 ##    &lt;fct&gt;                    &lt;int&gt;   &lt;int&gt; &lt;chr&gt;      
@@ -294,15 +316,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 Sense &amp; Sensibility         10       1 1          
 ## 10 Sense &amp; Sensibility         13       1 the        
 ## # … with 725,045 more rows</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="sentiment-analysis-with-inner-join.html#cb58-1"></a><span class="co"># nrc_joy &lt;- get_sentiments(&quot;nrc&quot;) # does not work</span></span>
-<span id="cb58-2"><a href="sentiment-analysis-with-inner-join.html#cb58-2"></a></span>
-<span id="cb58-3"><a href="sentiment-analysis-with-inner-join.html#cb58-3"></a>nrc_emotions_lex &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="st">&quot;data/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb58-4"><a href="sentiment-analysis-with-inner-join.html#cb58-4"></a><span class="st">  </span><span class="kw">rename</span>( <span class="st">&quot;words&quot;</span> =<span class="st"> </span><span class="dv">1</span>,  <span class="st">&quot;sentiment&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;score&quot;</span> =<span class="st"> </span><span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb58-5"><a href="sentiment-analysis-with-inner-join.html#cb58-5"></a><span class="st">   </span><span class="kw">select</span>(<span class="op">-</span>score)</span></code></pre></div>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="sentiment-analysis-with-inner-join.html#cb59-1"></a>nrc_joy &lt;-<span class="st"> </span>nrc_emotions_lex <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb59-2"><a href="sentiment-analysis-with-inner-join.html#cb59-2"></a><span class="st">  </span><span class="kw">filter</span>(sentiment <span class="op">==</span><span class="st"> &quot;joy&quot;</span>)</span>
-<span id="cb59-3"><a href="sentiment-analysis-with-inner-join.html#cb59-3"></a></span>
-<span id="cb59-4"><a href="sentiment-analysis-with-inner-join.html#cb59-4"></a>nrc_joy</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="sentiment-analysis-with-inner-join.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nrc_joy &lt;- get_sentiments(&quot;nrc&quot;) # does not work</span></span>
+<span id="cb58-2"><a href="sentiment-analysis-with-inner-join.html#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="sentiment-analysis-with-inner-join.html#cb58-3" aria-hidden="true" tabindex="-1"></a>nrc_emotions_lex <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">&quot;data/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb58-4"><a href="sentiment-analysis-with-inner-join.html#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>( <span class="st">&quot;words&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,  <span class="st">&quot;sentiment&quot;</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">&quot;score&quot;</span> <span class="ot">=</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb58-5"><a href="sentiment-analysis-with-inner-join.html#cb58-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(<span class="sc">-</span>score)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="sentiment-analysis-with-inner-join.html#cb59-1" aria-hidden="true" tabindex="-1"></a>nrc_joy <span class="ot">&lt;-</span> nrc_emotions_lex <span class="sc">%&gt;%</span> </span>
+<span id="cb59-2"><a href="sentiment-analysis-with-inner-join.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sentiment <span class="sc">==</span> <span class="st">&quot;joy&quot;</span>)</span>
+<span id="cb59-3"><a href="sentiment-analysis-with-inner-join.html#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="sentiment-analysis-with-inner-join.html#cb59-4" aria-hidden="true" tabindex="-1"></a>nrc_joy</span></code></pre></div>
 <pre><code>## # A tibble: 14,182 × 2
 ##    words       sentiment
 ##    &lt;chr&gt;       &lt;chr&gt;    
@@ -317,10 +339,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 abbot       joy      
 ## 10 abbreviate  joy      
 ## # … with 14,172 more rows</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="sentiment-analysis-with-inner-join.html#cb61-1"></a>tidy_books <span class="op">%&gt;%</span></span>
-<span id="cb61-2"><a href="sentiment-analysis-with-inner-join.html#cb61-2"></a><span class="st">  </span><span class="kw">filter</span>(book <span class="op">==</span><span class="st"> &quot;Emma&quot;</span>)<span class="op">%&gt;%</span></span>
-<span id="cb61-3"><a href="sentiment-analysis-with-inner-join.html#cb61-3"></a><span class="st">  </span><span class="kw">inner_join</span>(nrc_joy) <span class="op">%&gt;%</span></span>
-<span id="cb61-4"><a href="sentiment-analysis-with-inner-join.html#cb61-4"></a><span class="st">  </span><span class="kw">count</span>(words, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="sentiment-analysis-with-inner-join.html#cb61-1" aria-hidden="true" tabindex="-1"></a>tidy_books <span class="sc">%&gt;%</span></span>
+<span id="cb61-2"><a href="sentiment-analysis-with-inner-join.html#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(book <span class="sc">==</span> <span class="st">&quot;Emma&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb61-3"><a href="sentiment-analysis-with-inner-join.html#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(nrc_joy) <span class="sc">%&gt;%</span></span>
+<span id="cb61-4"><a href="sentiment-analysis-with-inner-join.html#cb61-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(words, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Joining, by = &quot;words&quot;</code></pre>
 <pre><code>## # A tibble: 3,504 × 2
 ##    words       n
